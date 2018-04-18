@@ -19,3 +19,5 @@ nmap <leader>j :NERDTreeFind<CR>
 
 let NERDTreeDirArrowExpandable='+'
 let NERDTreeDirArrowCollapsible='~'
+
+set laststatus=2
