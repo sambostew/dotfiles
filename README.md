@@ -27,12 +27,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 
 ### Todo
 
-1. change vim installer from pathogen to vundle
+1. Update tmux.conf with nesting options for remote sessions, see link in file
+
+2. change vim installer from pathogen to vundle
 reason: easier portability
 
-2. remove installation links to github vim plugins after vundle migration
+3. remove installation links to github vim plugins after vundle migration
 
-3. create installation script or ansible playbook
+4. create installation script or ansible playbook
 
 
 # Pulling config files
