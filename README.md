@@ -1,7 +1,7 @@
 # dotfiles
-#My Config Dotfiles
+# My Config Dotfiles
 
-##Installation 
+## Installation 
 
 1. Install zsh
 2. Install oh-my-zsh:
