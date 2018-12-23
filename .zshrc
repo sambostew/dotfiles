@@ -11,9 +11,8 @@ export ZSH=/home/simon/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
+
 ZSH_THEME="powerlevel9k/powerlevel9k"
-#ZSH_THEME="agnoster"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -57,6 +56,12 @@ ENABLE_CORRECTION="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
+#######################################################
+# 			Bindings                      #
+#######################################################
+
+bindkey '^x^e' edit-command-line
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -73,15 +78,12 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-#export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='vim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -99,14 +101,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -larht"
 
-#PS1='[\u@\h \W]\$ '
-
 screenfetch
 
-# powerline
-#powerline-daemon -q
-#. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-
+#######################################################
+# 		  Skin Settings                       #
+#######################################################
 POWERLEVEL9K_MODE='awesome-fontconfig'
  
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
