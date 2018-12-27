@@ -54,8 +54,14 @@ Baterry status added to tmux for laptop
 
 ### Tmux keybindings
 
-| Command | Description |
+| Description | Command |
 | ---     | ---         |
-| `mod`   | ctrl +b     |
-| `r`     | rename      |
-| `R`     | reload      |
+| prefix  | `ctrl +b`     |
+| detatch |`d` |
+| rename     | `r`      |
+| reload config     | `R`      |
+| horizontal split     | `H`|
+| vertical split  | `v`|
+| kill pane | `x` |
+| kill window | `X` |
+
