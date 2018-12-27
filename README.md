@@ -51,3 +51,10 @@ ls -n ~/dotfiles/.tmux.conf .tmux.conf
 
 Baterry status added to tmux for laptop
 
+
+### Tmux keybindings
+
+| Command | Description |
+| `mod`   | ctrl +b     |
+| `r`     | rename      |
+| `R`     | reload      |
