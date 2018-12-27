@@ -131,3 +131,9 @@ cat ~/.cache/wal/sequences
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
+
+# Auto create or attach a tmux session
+ if [ -z "$TMUX" ]
+ then
+	 tmux attach -t TMUX || tmux new -s TMUX
+ fi
