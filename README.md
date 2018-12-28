@@ -57,6 +57,11 @@ Baterry status added to tmux for laptop
 | Description | Command |
 | ---     | ---         |
 | prefix  | `ctrl +b`     |
+| new window | `c`|
+| next-window | `n` |
+| next-window | `shift right arrow`|
+| previous-window | `p` |
+| previous-window | `shift left` | 
 | detatch |`d` |
 | rename     | `r`      |
 | reload config     | `R`      |
@@ -64,4 +69,4 @@ Baterry status added to tmux for laptop
 | vertical split  | `v`|
 | kill pane | `x` |
 | kill window | `X` |
-
+| bind/unbind mouse | `m` |
