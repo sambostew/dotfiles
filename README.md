@@ -61,7 +61,11 @@ Baterry status added to tmux for laptop
 | next-window | `n` |
 | next-window | `shift right arrow`|
 | previous-window | `p` |
-| previous-window | `shift left` | 
+| previous-window | `shift left arrow` |
+| switch pane left | `left arrow` |
+| switch pane left | `h` |
+| switch pane right| `right arrow`|
+| switch pane right| `l` |
 | detatch |`d` |
 | rename     | `r`      |
 | reload config     | `R`      |
