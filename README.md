@@ -24,6 +24,10 @@ https://github.com/pearofducks/ansible-vim
 
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
+## fzf
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 ### Todo
 
