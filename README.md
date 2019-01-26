@@ -39,7 +39,8 @@ reason: easier portability
 3. remove installation links to github vim plugins after vundle migration
 
 4. create installation script or ansible playbook
-
+5. Integrate gnu stow for symblic link management
+https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
 
 # Pulling config files
 
