@@ -72,6 +72,7 @@ bindkey '^x^e' edit-command-line
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 plugins=(zsh-autosuggestions)
+plugins=(fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,3 +138,5 @@ source ~/.cache/wal/colors-tty.sh
  then
 	 tmux attach -t TMUX || tmux new -s TMUX
  fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
