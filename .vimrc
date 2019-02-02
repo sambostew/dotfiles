@@ -14,6 +14,7 @@ set nu
 autocmd vimenter * NERDTree
 
 nmap <F6> :NERDTreeToggle<CR>
+nnoremap <F5> :MundoToggle<CR>
 
 let NERDTreeMapActivateNode='<right>'
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
