@@ -1,0 +1,328 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+; Background colors defined as variables for later use, some are currently redundent
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40i
+
+white = #FFFFFF
+black = #000000
+orange = #FF8C00
+
+; Top menu bar
+[bar/example]
+width = 100%
+height = 50
+;offset-x = 1%
+;offset-y = 0%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+font-0 = "UbuntuMono Nerd Font:pixelsize=20;1"
+font-1 = "UbuntuMono Nerd Font:pixelsize=40;8"
+font-2 = "UbuntuMono Nerd Font:pixelsize=18;1"
+;font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=32;6"
+;font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=16;6"
+;font-4 = "Font Awesome 5 Brands:pixelsize=16;6"
+
+modules-left = i3
+modules-right = arrow3 wlan arrow2 volume arrow1 updates arrow2 battery arrow1 date 
+
+################################################################################
+
+[bar/mybar]
+wm-restack = i3
+override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+################################################################################
+
+[module/arrow1]
+; first left facing arrow, black background with orange text
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.black}
+content-background = ${colors.orange}
+content-alignment = bottom
+
+################################################################################
+
+[module/arrow2]
+; background to trans
+type = custom/text
+content = "%{T2} %{T-}"
+content-font = 2
+content-foreground = ${colors.orange}
+content-background = ${colors.black}
+
+################################################################################
+
+[module/arrow3]
+; background to trans
+type = custom/text
+content = ""
+content-font = 2 
+content-foreground = ${colors.black}
+content-background = ${colors.background}
+
+################################################################################
+
+[module/bluetooth]
+; Bluetooth script for connected devices, currently not added to menu bar
+type = custom/script
+exec = ./polybar-scripts/system-bluetooth-bluetoothctl.sh
+tail = true
+click-left = ./polybar-scripts/system-bluetooth-bluetoothctl.sh --toggle &
+format-foreground = ${colors.white}
+format-background = ${colors.black}
+
+################################################################################
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+################################################################################
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true 
+strip-wsnumbers = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.orange}
+;${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+
+################################################################################
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+################################################################################
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+################################################################################
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+
+format-connected = <label-connected>
+format-connected-background = ${colors.black}
+format-connected-foreground = ${colors.orange}
+format-connected-prefix = " "
+format-connected-prefix-background = ${colors.black}
+format-connected-prefix-foreground = ${colors.orange}
+format-connected-prefix-padding = 1
+label-connected = "  %downspeed%  %upspeed% "
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.black}
+format-disconnected-foreground = ${colors.orange}
+format-disconnected-prefix = " "
+format-disconnected-prefix-background = ${colors.black}
+format-disconnected-prefix-foreground = ${colors.orange}
+format-disconnected-prefix-padding = 1
+label-disconnected = " disconnected "
+
+################################################################################
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d"
+
+time= %H:%M:%S
+
+label = %date% %time%
+label-foreground = ${colors.orange}
+label-background = ${colors.black}
+
+
+################################################################################
+
+[module/volume]
+type = internal/volume
+
+; mapping = true
+format-volume = <label-volume>
+
+label-volume = " %percentage%% "
+label-volume-foreground = ${colors.black}
+label-volume-background = ${colors.orange}
+
+label-volume-padding = 1 
+label-volume-alignment = left
+;label-volume-font = 2
+
+label-muted = " Muted "
+label-muted-foreground = ${colors.black}
+label-muted-background = ${colors.orange}
+
+label-muted-padding = 1
+label-muted-alignment = left
+;label-muted-font = 2
+
+content-font=2
+
+################################################################################
+
+[module/battery]
+;https://github.com/jaagr/polybar/wiki/Module:-battery
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 100 
+
+format-charging = <animation-charging> <label-charging>
+label-charging = " %percentage%%"
+label-charging-foreground = ${colors.black}
+label-charging-background = ${colors.orange}
+
+format-foreground = ${colors.black}
+format-charging-foreground = ${colors.black}
+format-charging-background = ${colors.orange}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = " %percentage%%"
+label-discharging-foreground = ${colors.black}
+;format-discharging-foreground = ${colors.black}
+format-discharging-background = ${colors.orange}
+
+format-full-prefix = "  "
+format-full-prefix-foreground = ${colors.black}
+format-full-foreground = ${colors.black}
+format-full-background = ${colors.orange}
+
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+ramp-capacity-foreground = ${colors.black}
+
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-4 = "  "
+animation-charging-foreground = ${colors.black}
+animation-charging-framerate = 750 
+
+################################################################################
+
+[module/updates]
+type = custom/script
+label = Updates: %output%
+label-padding = 2
+label-padding-alignment = left
+
+format-foreground = ${colors.orange}
+format-background = ${colors.black}
+exec = /usr/lib/update-notifier/apt-check --human-readable | awk 'NR==1 { print $1} ' 
+interval = 10
+;label = Updates 
+content-font = 2
+
+################################################################################
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+################################################################################
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+################################################################################
+
+;vim:ft=dosini
