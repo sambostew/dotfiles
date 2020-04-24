@@ -1,0 +1,14 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ theme: "solarized";
+ font: "hack 10";
+ combi-modi: "window,drun,ssh";
+ lines: 5;
+ width: 100;
+ padding: 800;
+ font: "System San Francisco Display 42";
+ color-normal: "#2f343f,#f3f4f5,#9575cd,#2f343f,#9575cd";
+ color-active: "#2f343f,#f3f4f5,#9575cd,#2f343f,#9575cd";
+ fullscreen: true; 
+}
+
