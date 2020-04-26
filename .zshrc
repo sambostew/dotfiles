@@ -61,7 +61,7 @@ ENABLE_CORRECTION="true"
 # 			Bindings                      #
 #######################################################
 
-bindkey '^x^e' edit-command-line
+#bindkey '^x^e' edit-command-line
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -73,6 +73,7 @@ bindkey '^x^e' edit-command-line
 plugins=(git)
 plugins=(zsh-autosuggestions)
 plugins=(fzf)
+plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,9 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="lsd"
-alias ll="lsd -l"
+alias ll="lsd -la"
 
-screenfetch
+neofetch
 
 #######################################################
 # 		  Skin Settings                       #
@@ -133,11 +134,5 @@ cat ~/.cache/wal/sequences
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
-
-# Auto create or attach a tmux session
- if [ -z "$TMUX" ]
- then
-	 tmux attach -t TMUX || tmux new -s TMUX
- fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
