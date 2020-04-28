@@ -97,27 +97,27 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: WWW"
-set $ws2 "2: MAIL"
-set $ws3 "3: ATOM"
-set $ws4 "4: WWW"
-set $ws5 "5: TMUX"
-set $ws6 "6: MUSC"
-set $ws7 "7: VBOX"
-set $ws8 "8: VBOX"
-set $ws9 "9: VBOX"
+set $ws1 "1: Mail"
+set $ws2 "2: Firefox"
+set $ws3 "3: Atom"
+set $ws4 "4: Music"
+set $ws5 "5: Browser"
+set $ws6 "6: Joplin"
+set $ws7 "7: VBox"
+set $ws8 "8: VBox"
+set $ws9 "9: VBox"
 
 # Assign workspace to screens
-workspace $ws1 output DP-4.8
-workspace $ws2 output DP-2.8
+workspace $ws1 output DP-2.8
+workspace $ws2 output DP-4.8
 workspace $ws3 output HDMI-0
 
-workspace $ws4 output DP-4.8
-workspace $ws5 output DP-2.8
+workspace $ws4 output DP-2.8
+workspace $ws5 output DP-4.8
 workspace $ws6 output HDMI-0
 
-workspace $ws7 output DP-4.8
-workspace $ws8 output DP-2.8
+workspace $ws7 output DP-2.8
+workspace $ws8 output DP-4.8
 workspace $ws9 output HDMI-0
 
 # switch to workspace
@@ -201,6 +201,9 @@ exec --no-startup-id conky -c $HOME/.config/conky/conky.conf
 #xrandr
 exec --no-startup-id xrandr --output DP-2.8 --mode 2560x1440 --pos 0x0 --rotate normal --output DP-4.8 --primary --mode 2560x1440 --pos 2560x0 --rotate normal --output DVI-D-0 --off --output HDMI-0 --mode 2560x1440 --pos 5120x0 --rotate normal --output DP-0 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
 
+# Pywal
+exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -q
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 ##bar {
@@ -219,8 +222,13 @@ exec --no-startup-id xrandr --output DP-2.8 --mode 2560x1440 --pos 0x0 --rotate 
 ## Custom Keybindings
 
 bindsym $mod+Shift+x exec i3lock-fancy 
-bindsym $mod+Shift+F1 exec firefox 
-bindsym $mod+Shift+F2 exec vivaldi
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+t exec thunderbird 
+bindsym $mod+Shift+o exec vivaldi-stable
+bindsym $mod+Shift+a exec atom
+bindsym $mod+Shift+v exec virtualbox
+bindsym $mod+Shift+n exec joplin-desktop
+bindsym $mod+Shift+s exec spotify
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -237,17 +245,33 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-#Automatically place Firefox on workspace 1
-for_window [class="Firefox"] move container to workspace $ws1
-exec --no-startup-id firefoxAutostart firefox, autobound to workspace $ws1
+#Automatically place Firefox on workspace 2
+for_window [class="firefox"] move container to workspace $ws2
+exec --no-startup-id firefoxAutostart firefox, autobound to workspace $ws2
 
-# Automatically Place Thunderbird on workspace 2
-for_window [class="Thunderbird"] move container to workspace $ws2
-exec --no-startup-id thunderbirdAutoStart thuderbird, autobound to workspace $ws2
+# Automatically Place Thunderbird on workspace 1
+for_window [class="Thunderbird"] move container to workspace $ws1
+exec --no-startup-id thunderbirdAutoStart thuderbird, autobound to workspace $ws1
 
 # Atom workspace 3
 for_window [class="Atom"] move container to workspace $ws3
 exec --no-startup-id atomAutoStart atom, autobound to workspace $ws3
+
+# Spotify Workspace 4
+for_window [class="Spotify"] move container to workspace $ws4
+exec --no-startup-id spotifyAutoStart spotify, autobound to workspace $ws4
+
+# VirtualBox workspace 9
+for_window [class="VirtualBox Manager"] move container to workspace $ws9
+exec --no-startup-id virtualboxAutoStart virtualbox, autobound to workspace $ws9
+
+# Vivaldi Workspace 5
+for_window [class="Vivaldi-stable"] move container to workspace $ws5
+exec --no-startup-id vivaldiAutoStart vivaldi-stable, autobound to workspace $ws5
+
+# Joplin workspace 6
+for_window [class="Joplin"] move container to workspace $ws6
+exec --no-startup-id joplinAutoStart joplin, autobound to workspace $ws6
 
 #Auto set wallpaper on startup or restart
 exec_always feh --bg-scale ~/Pictures/godmode.jpg
@@ -260,4 +284,3 @@ gaps outer 15
 
 #compton
 exec_always --no-startup-id picom -b 
-#--config /home/simon/.config/.compton.conf
