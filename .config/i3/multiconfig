@@ -251,7 +251,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # Media player controls
 bindsym --release XF86AudioPlay exec playerctl play-pause
-bindsym --relase  XF86AudioNext exec playerctl next
+bindsym --release  XF86AudioNext exec playerctl next
 bindsym --release XF86AudioPrev exec playerctl previous
 
 #Automatically place Firefox on workspace 2
