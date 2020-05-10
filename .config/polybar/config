@@ -32,8 +32,9 @@ orange = #FF8C00
 
 ; Top menu bar
 [bar/example]
+monitor = ${env:MONITOR:}
 width = 100%
-height = 50
+height = 24
 ;offset-x = 1%
 ;offset-y = 0%
 radius = 0.0
@@ -48,15 +49,12 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-font-0 = "UbuntuMono Nerd Font:pixelsize=20;1"
-font-1 = "UbuntuMono Nerd Font:pixelsize=40;8"
+font-0 = "UbuntuMono Nerd Font:pixelsize=12;1"
+font-1 = "UbuntuMono Nerd Font:pixelsize=20;4"
 font-2 = "UbuntuMono Nerd Font:pixelsize=18;1"
-;font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=32;6"
-;font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=16;6"
-;font-4 = "Font Awesome 5 Brands:pixelsize=16;6"
 
 modules-left = i3
-modules-right = arrow3 wlan arrow2 volume arrow1 updates arrow2 battery arrow1 date 
+modules-right = arrow3 wlan arrow1 pulseaudio arrow2 updates arrow1 date 
 
 ################################################################################
 
@@ -86,7 +84,7 @@ content-alignment = bottom
 [module/arrow2]
 ; background to trans
 type = custom/text
-content = "%{T2} %{T-}"
+content = " "
 content-font = 2
 content-foreground = ${colors.orange}
 content-background = ${colors.black}
@@ -98,7 +96,7 @@ content-background = ${colors.black}
 type = custom/text
 content = ""
 content-font = 2 
-content-foreground = ${colors.black}
+content-foreground = ${colors.orange}
 content-background = ${colors.background}
 
 ################################################################################
@@ -185,24 +183,22 @@ card = intel_backlight
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = enp5s0
 interval = 1.0
 
 format-connected = <label-connected>
-format-connected-background = ${colors.black}
-format-connected-foreground = ${colors.orange}
-format-connected-prefix = " "
-format-connected-prefix-background = ${colors.black}
-format-connected-prefix-foreground = ${colors.orange}
+format-connected-background = ${colors.orange}
+format-connected-foreground = ${colors.black}
+format-connected-prefix-background = ${colors.orange}
+format-connected-prefix-foreground = ${colors.black}
 format-connected-prefix-padding = 1
 label-connected = "  %downspeed%  %upspeed% "
 
 format-disconnected = <label-disconnected>
-format-disconnected-background = ${colors.black}
-format-disconnected-foreground = ${colors.orange}
-format-disconnected-prefix = " "
-format-disconnected-prefix-background = ${colors.black}
-format-disconnected-prefix-foreground = ${colors.orange}
+format-disconnected-background = ${colors.orange}
+format-disconnected-foreground = ${colors.black}
+format-disconnected-prefix-background = ${colors.orange}
+format-disconnected-prefix-foreground = ${colors.black}
 format-disconnected-prefix-padding = 1
 label-disconnected = " disconnected "
 
@@ -223,73 +219,34 @@ label-background = ${colors.black}
 
 ################################################################################
 
-[module/volume]
-type = internal/volume
+[module/pulseaudio]
+type = internal/pulseaudio
 
-; mapping = true
 format-volume = <label-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${colors.orange}
+label-volume-background = ${colors.black}
 
-label-volume = " %percentage%% "
-label-volume-foreground = ${colors.black}
-label-volume-background = ${colors.orange}
+label-muted = 🔇 muted
+label-muted-foreground = ${colors.orange}
+label-muted-background = ${colors.black}
 
-label-volume-padding = 1 
-label-volume-alignment = left
-;label-volume-font = 2
-
-label-muted = " Muted "
-label-muted-foreground = ${colors.black}
-label-muted-background = ${colors.orange}
-
-label-muted-padding = 1
-label-muted-alignment = left
-;label-muted-font = 2
-
-content-font=2
-
-################################################################################
-
-[module/battery]
-;https://github.com/jaagr/polybar/wiki/Module:-battery
-type = internal/battery
-battery = BAT1
-adapter = ADP1
-full-at = 100 
-
-format-charging = <animation-charging> <label-charging>
-label-charging = " %percentage%%"
-label-charging-foreground = ${colors.black}
-label-charging-background = ${colors.orange}
-
-format-foreground = ${colors.black}
-format-charging-foreground = ${colors.black}
-format-charging-background = ${colors.orange}
-
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = " %percentage%%"
-label-discharging-foreground = ${colors.black}
-;format-discharging-foreground = ${colors.black}
-format-discharging-background = ${colors.orange}
-
-format-full-prefix = "  "
-format-full-prefix-foreground = ${colors.black}
-format-full-foreground = ${colors.black}
-format-full-background = ${colors.orange}
-
-ramp-capacity-0 = "  "
-ramp-capacity-1 = "  "
-ramp-capacity-2 = "  "
-ramp-capacity-3 = "  "
-ramp-capacity-4 = "  "
-ramp-capacity-foreground = ${colors.black}
-
-animation-charging-0 = "  "
-animation-charging-1 = "  "
-animation-charging-2 = "  "
-animation-charging-3 = "  "
-animation-charging-4 = "  "
-animation-charging-foreground = ${colors.black}
-animation-charging-framerate = 750 
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ################################################################################
 
@@ -299,11 +256,10 @@ label = Updates: %output%
 label-padding = 2
 label-padding-alignment = left
 
-format-foreground = ${colors.orange}
-format-background = ${colors.black}
-exec = /usr/lib/update-notifier/apt-check --human-readable | awk 'NR==1 { print $1} ' 
+format-foreground = ${colors.black}
+format-background = ${colors.orange}
+exec = yay -Qu | wc -l 
 interval = 10
-;label = Updates 
 content-font = 2
 
 ################################################################################
