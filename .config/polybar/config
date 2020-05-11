@@ -258,7 +258,7 @@ label-padding-alignment = left
 
 format-foreground = ${colors.black}
 format-background = ${colors.orange}
-exec = yay -Qu | wc -l 
+exec = yay -Pn 
 interval = 10
 content-font = 2
 
