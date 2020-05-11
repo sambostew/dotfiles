@@ -230,6 +230,7 @@ bindsym $mod+Shift+v exec virtualbox
 bindsym $mod+Shift+n exec joplin-desktop
 bindsym $mod+Shift+s exec spotify
 bindsym $mod+Shift+b exec bitwarden
+bindsym $mod+Shift+Return exec kitty -e ranger -r ~/.config/ranger/rc.conf
 
 # Screenshots taken from
 # https://www.reddit.com/r/i3wm/comments/65vis5/screenshot_commands_from_my_i3_config/
@@ -255,7 +256,7 @@ bindsym --release  XF86AudioNext exec playerctl next
 bindsym --release XF86AudioPrev exec playerctl previous
 
 #Automatically place Firefox on workspace 2
-for_window [class="firefox"] move container to workspace $ws2
+for_window [class="Firefox"] move container to workspace $ws2
 exec --no-startup-id firefoxAutostart firefox, autobound to workspace $ws2
 
 # Automatically Place Thunderbird on workspace 1
