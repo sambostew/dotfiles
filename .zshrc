@@ -105,6 +105,20 @@ source $ZSH/oh-my-zsh.sh
 alias ls="lsd"
 alias ll="lsd -la"
 
+#Vim Alias
+
+alias vi="vim $HOME/.config/i3/config"
+alias vpi="vim $HOME/.config/picom/picom.conf"
+alias vpo="vim $HOME/.config/polybar/config"
+alias vr="vim $HOME/.config/rofi/config"
+alias vd="vim $HOME/.config/dunst/dunstrc"
+
+#Git Alias
+
+alias ga "git add"
+alias gc "git commit -m"
+alias gp "git push origin master"
+
 neofetch
 
 #######################################################
