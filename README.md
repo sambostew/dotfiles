@@ -41,7 +41,7 @@ reason: easier portability
 4. create installation script or ansible playbook
 5. Integrate gnu stow for symblic link management
 https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
-6. Update Ranger config files for fzf keybindings
+6. Update aliasing via gnu stow or bare repo 
 
 # Pulling config files
 
