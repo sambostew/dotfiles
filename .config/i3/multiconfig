@@ -224,15 +224,18 @@ exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -q
 ## Custom Keybindings
 
 bindsym $mod+Shift+x exec i3lock-fancy 
-bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+t exec thunderbird 
-bindsym $mod+Shift+o exec vivaldi-stable
-bindsym $mod+Shift+a exec atom
 bindsym $mod+Shift+v exec virtualbox
-bindsym $mod+Shift+n exec joplin-desktop
-bindsym $mod+Shift+s exec spotify
+bindsym $mod+Shift+s exec kitty -e zsh -ic spt
 bindsym $mod+Shift+b exec bitwarden
 bindsym $mod+Shift+Return exec kitty -e zsh -ic ranger
+
+## Custom Keybindings with auto navigate
+
+bindsym $mod+Shift+f exec firefox; workpace $ws2
+bindsym $mod+Shift+a exec atom; workspace $ws3
+bindsym $mod+Shift+o exec vivaldi-stable; workspace $ws5
+bindsym $mod+Shift+n exec joplin-desktop; workspace $ws6
 
 # Screenshots taken from
 # https://www.reddit.com/r/i3wm/comments/65vis5/screenshot_commands_from_my_i3_config/
@@ -257,25 +260,21 @@ bindsym --release XF86AudioPlay exec playerctl play-pause
 bindsym --release  XF86AudioNext exec playerctl next
 bindsym --release XF86AudioPrev exec playerctl previous
 
-#Automatically place Firefox on workspace 2
-for_window [class="Firefox"] move container to workspace $ws2
-exec --no-startup-id firefoxAutostart firefox, autobound to workspace $ws2
-
 # Automatically Place Thunderbird on workspace 1
 for_window [class="Thunderbird"] move container to workspace $ws1
-exec --no-startup-id thunderbirdAutoStart thuderbird, autobound to workspace $ws1
+exec --no-startup-id thunderbirdAutoStart thuderbird, autobound to workspace $ws1, focus
+
+#Automatically place Firefox on workspace 2
+for_window [class="Firefox"] move container to workspace $ws2
+exec --no-startup-id firefoxAutostart firefox, autobound to workspace $ws2, focus
 
 # Atom workspace 3
 for_window [class="Atom"] move container to workspace $ws3
 exec --no-startup-id atomAutoStart atom, autobound to workspace $ws3
 
-# Spotify Workspace 4
-for_window [class="Spotify"] move container to workspace $ws4
-exec --no-startup-id spotifyAutoStart spotify, autobound to workspace $ws4
-
 # Vivaldi Workspace 5
 for_window [class="Vivaldi-stable"] move container to workspace $ws5
-exec --no-startup-id vivaldiAutoStart vivaldi-stable, autobound to workspace $ws5
+exec --no-startup-id vivaldiAutoStart vivaldi-stable, autobound to workspace $ws5, focus
 
 # VirtualBox workspace 9
 for_window [class="VirtualBox Manager"] move container to workspace $ws9
