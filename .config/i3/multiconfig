@@ -206,7 +206,7 @@ bindsym $mod+Shift+Return exec kitty -e zsh -ic ranger
 
 ## Custom Keybindings with auto navigate
 
-bindsym $mod+Shift+f exec firefox; workpace $ws2
+bindsym $mod+Shift+f exec firefox; workspace $ws2
 bindsym $mod+Shift+a exec atom; workspace $ws3
 bindsym $mod+Shift+s exec kitty -T spt -e zsh -ic spt; workspace $ws4
 bindsym $mod+Shift+o exec vivaldi-stable; workspace $ws5
