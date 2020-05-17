@@ -21,6 +21,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 #exec --no-startup-id nm-applet
 
+# autotiling similar to bspwn
+# https://github.com/nwg-piotr/autotiling
+
+exec_always --no-startup-id autotiling
+
 # Set Keyboard Layout
 exec_always --no-startup-id "setxkbmap gb"
 
@@ -208,6 +213,7 @@ bindsym $mod+Shift+Return exec kitty -e zsh -ic ranger
 
 bindsym $mod+Shift+f exec firefox; workspace $ws2
 bindsym $mod+Shift+a exec atom; workspace $ws3
+bindsym $mod+Shift+m exec kitty -T newsboat -e zsh -ic newsboat; workspace $ws3
 bindsym $mod+Shift+s exec kitty -T spt -e zsh -ic spt; workspace $ws4
 bindsym $mod+Shift+o exec vivaldi-stable; workspace $ws5
 bindsym $mod+Shift+n exec joplin-desktop; workspace $ws6
@@ -242,6 +248,7 @@ for_window [class="Joplin"] move container to workspace $ws6
 
 # Automatically bind terminal applications to certain workspaces
 
+assign [title="newsboat"] $ws3
 assign [title="spt"] $ws4
 
 #Auto set wallpaper on startup or restart
