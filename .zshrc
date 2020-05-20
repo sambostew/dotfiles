@@ -18,8 +18,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 #######################################################
 # 			Bindings                      #
@@ -30,7 +29,10 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf vi-mode ssh-agent)
+
+# Add Github key to SSH agent
+zstyle :omz:plugins:ssh-agent identities github
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,6 +74,7 @@ alias vd="vim $HOME/.config/dunst/dunstrc"
 alias vz="vim $HOME/.zshrc"
 alias vv="vim $HOME/.vimrc"
 alias vh="vim $HOME/Documents/ansible/home-management.yml"
+alias vt="vim $HOME/.config/tmux/tmux.conf"
 
 #Git Alias
 
@@ -84,6 +87,13 @@ alias gp="git push origin master"
 
 alias sz="source $HOME/.zshrc"
 alias sv="source $HOME/.vimrc"
+alias st="source $HOME/.tmux.conf"
+
+# TMUX alias
+
+alias tn="tmux new -s TMUX"
+alias tl="tmux ls"
+alias ta="tmux attach"
 
 neofetch
 
@@ -113,6 +123,5 @@ cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
