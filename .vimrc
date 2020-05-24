@@ -1,19 +1,36 @@
-execute pathogen#infect()
-
 syntax on
 filetype plugin indent on
 
-colorscheme wal
-set nu
+" turn relative line numbers off
+set relativenumber
+highlight LineNr ctermfg=white
+
+" turn on line cursor
+set cursorline
+highlight CursorLine gui=underline cterm=underline
+
+" Install Vim Plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'pearofducks/ansible-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'ervandew/supertab'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'simnalamburt/vim-mundo'
+
+" Initialize plugin system
+call plug#end()
+
+"Set colour scheme to palenight
+colorscheme palenight
 
 " define lightline configuration
- let g:lightline = {
-       \ 'colorscheme': 'wombat',
-             \ }
+let g:lightline = { 'colorscheme': 'palenight' }
 
-autocmd vimenter * NERDTree
+" Shell check
+map <leader>p :!clear && shellcheck %<CR>
 
-nmap <F6> :NERDTreeToggle<CR>
+"Map UndoTree to F5
 nnoremap <F5> :MundoToggle<CR>
 
 let NERDTreeMapActivateNode='<right>'
