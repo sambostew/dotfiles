@@ -36,12 +36,10 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 2. change vim installer from pathogen to vundle
 reason: easier portability
 
-3. remove installation links to github vim plugins after vundle migration
-
-4. create installation script or ansible playbook
-5. Integrate gnu stow for symblic link management
+3. create installation script or ansible playbook
+4. Integrate gnu stow for symblic link management
 https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
-6. Update aliasing via gnu stow or bare repo 
+5. Update aliasing via gnu stow or bare repo 
 
 # Pulling config files
 
