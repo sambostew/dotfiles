@@ -1,3 +1,5 @@
+let mapleader = "\<space>"
+
 syntax on
 filetype plugin indent on
 
@@ -17,6 +19,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'ervandew/supertab'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'simnalamburt/vim-mundo'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'preservim/nerdtree'
 
 " Initialize plugin system
 call plug#end()
@@ -25,22 +29,30 @@ call plug#end()
 colorscheme palenight
 
 " define lightline configuration
-let g:lightline = { 'colorscheme': 'palenight' }
+let g:lightline = {'colorscheme': 'palenight'}
 
 " Shell check
-map <leader>p :!clear && shellcheck %<CR>
+map <leader>s :!clear && shellcheck %<CR>
 
 "Map UndoTree to F5
 nnoremap <F5> :MundoToggle<CR>
 
-let NERDTreeMapActivateNode='<right>'
-let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
-let NERDTreeShowHidden=1
-
+" Nerd Tree
+map <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
 
-let NERDTreeDirArrowExpandable='+'
-let NERDTreeDirArrowCollapsible='~'
+" Automatically open NerdTree but place the cursor in the main buffer
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+"Automatically close when NerdTree is the last open buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeMapActivateNode='<right>'
+let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 "Fix Lightline"
 set laststatus=2
