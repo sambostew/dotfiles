@@ -1,4 +1,13 @@
+"Set the leader key to space
 let mapleader = "\<space>"
+
+" Change the ESC timeout values
+set timeoutlen=1000 ttimeoutlen=0
+
+" Tab Settings"
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 
 syntax on
 filetype plugin indent on
@@ -10,6 +19,16 @@ highlight LineNr ctermfg=white
 " turn on line cursor
 set cursorline
 highlight CursorLine gui=underline cterm=underline
+
+" Shortcuts for split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+"Set splits to the right and the bottom, useful for vim help output
+set splitbelow
+set splitright
 
 " Install Vim Plugins
 call plug#begin('~/.vim/plugged')
