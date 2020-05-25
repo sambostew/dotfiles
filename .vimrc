@@ -43,6 +43,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Initialize plugin system
 call plug#end()
@@ -51,10 +52,46 @@ call plug#end()
 colorscheme palenight
 
 " define lightline configuration
-let g:lightline = {'colorscheme': 'palenight'}
+let g:lightline = {
+      \ 'colorscheme': 'palenight',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'tabline': {
+	  \	  'colorscheme': 'palenight',
+      \   'left': [ ['buffers'] ],
+      \   'right': [ ['close'] ]
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
+
 let g:lightline.separator = {
 	\   'left': '', 'right': ''
   \}
+
+let g:lightline.component_raw = {'buffers': 1}
+
+" Buffline navigation using numbers
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+"Fix Lightline"
+set laststatus=2
+set showtabline=2
+set noshowmode
 
 " Shell check
 map <leader>s :!clear && shellcheck %<CR>
@@ -78,7 +115,3 @@ let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-
-"Fix Lightline"
-set laststatus=2
-set noshowmode
