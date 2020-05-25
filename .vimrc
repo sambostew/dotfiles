@@ -1,6 +1,8 @@
 "Set the leader key to space
 let mapleader = "\<space>"
 
+set clipboard^=unnamed,unnamedplus
+
 " Change the ESC timeout values
 set timeoutlen=1000 ttimeoutlen=0
 
@@ -40,6 +42,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -49,6 +52,9 @@ colorscheme palenight
 
 " define lightline configuration
 let g:lightline = {'colorscheme': 'palenight'}
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
 
 " Shell check
 map <leader>s :!clear && shellcheck %<CR>
@@ -69,7 +75,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let NERDTreeMapActivateNode='<right>'
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
-
+let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
