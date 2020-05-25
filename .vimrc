@@ -42,6 +42,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 
@@ -115,3 +116,6 @@ let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+"fzf
+nnoremap <leader>f :Files<CR>
