@@ -94,8 +94,10 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 
+" Spell check
+map <leader>s :setlocal spell spellang=en_gb<CR>
 " Shell check
-map <leader>s :!clear && shellcheck %<CR>
+map <leader>S :!clear && shellcheck %<CR>
 
 "Map UndoTree to F5
 nnoremap <F5> :MundoToggle<CR>
