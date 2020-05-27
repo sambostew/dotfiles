@@ -121,3 +121,12 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "fzf
 nnoremap <C-p> :Files /$HOME/<CR>
 
+"Auto Save text files
+let g:auto_save = 0
+augroup ft_text
+	au!
+	au FileType text let b_auto_save = 1
+augroup END
+
+"Disable the annoying bell
+set belloff=all
