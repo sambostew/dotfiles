@@ -1,7 +1,7 @@
 "Set the leader key to space
 let mapleader = "\<space>"
 
-set clipboard^=unnamed,unnamedplus
+"set clipboard^=unnamed,unnamedplus
 
 " Change the ESC timeout values
 set timeoutlen=1000 ttimeoutlen=0
@@ -45,7 +45,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
-
+Plug '907th/vim-auto-save'
 " Initialize plugin system
 call plug#end()
 
@@ -102,7 +102,6 @@ nnoremap <F5> :MundoToggle<CR>
 
 " Nerd Tree
 map <leader>n :NERDTreeToggle<CR>
-nmap <leader>j :NERDTreeFind<CR>
 
 " Automatically open NerdTree but place the cursor in the main buffer
 autocmd VimEnter * NERDTree
@@ -118,4 +117,5 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 "fzf
-nnoremap <leader>f :Files<CR>
+nnoremap <C-p> :Files /$HOME/<CR>
+
