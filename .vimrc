@@ -130,3 +130,10 @@ augroup END
 
 "Disable the annoying bell
 set belloff=all
+
+"Add a Return line in normal mode without having to switch to Insert
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
+"Create a new file, in a new tab
+nmap <C-n> :tabedit file <CR>
