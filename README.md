@@ -12,14 +12,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 https://github.com/powerline/fonts
 
-## NerdTree
-
-https://github.com/scrooloose/nerdtree
-
-## Pear of Ducks
-
-https://github.com/pearofducks/ansible-vim
-
 ## Auto suggestions
 
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -40,6 +32,11 @@ reason: easier portability
 4. Integrate gnu stow for symblic link management
 https://alexpearce.me/2016/02/managing-dotfiles-with-stow/
 5. Update aliasing via gnu stow or bare repo 
+6. Update vim to include snippets
+7. Look into vim-footnotes
+8. Setup and configure vim folding
+9. Update vim keybings
+10. Add an i3 keybinding cheatsheet doc
 
 # Pulling config files
 
@@ -78,3 +75,5 @@ Baterry status added to tmux for laptop
 | kill pane | `x` |
 | kill window | `X` |
 | bind/unbind mouse | `m` |
+
+### Current Vim keybindings are not documented
