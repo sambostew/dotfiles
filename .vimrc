@@ -1,3 +1,5 @@
+": Basic Leader key bindings, configuration and setting {{{
+
 "Set the leader key to space
 let mapleader = "\<space>"
 
@@ -23,6 +25,38 @@ highlight LineNr ctermfg=white
 set cursorline
 highlight CursorLine gui=underline cterm=underline
 
+
+"Set colour scheme to palenight
+colorscheme palenight
+set background=dark 
+
+
+"Disable the annoying bell
+set belloff=all
+"Automaticall Center the buffer
+"
+set scrolloff=999
+
+"Fix delete key in vim
+set backspace=indent,eol,start
+
+"Add a Return line in normal mode without having to switch to Insert
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+
+"Create a new file, in a new tab
+nmap <C-n> :tabedit file <CR>
+
+
+"Map UndoTree to F5
+nnoremap <F5> :MundoToggle<CR>
+"fzf
+nnoremap <C-p> :Files /$HOME/<CR>
+
+": }}}
+
+": Set split configuration and shortcuts {{{
+"
 " Shortcuts for split navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -33,7 +67,9 @@ map <C-l> <C-w>l
 set splitbelow
 set splitright
 
-" Install Vim Plugins
+": }}}
+
+": Vim Plugins {{{
 call plug#begin('~/.vim/plugged')
 
 Plug 'pearofducks/ansible-vim'
@@ -47,14 +83,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug '907th/vim-auto-save'
-" Initialize plugin system
+
 call plug#end()
 
-"Set colour scheme to palenight
-colorscheme palenight
-set background=dark 
+": }}}
 
-" define lightline configuration
+": Lightline Configuration {{{
+ 
 let g:lightline = {
       \ 'colorscheme': 'palenight',
       \ 'active': {
@@ -79,7 +114,9 @@ let g:lightline.separator = {
 
 let g:lightline.component_raw = {'buffers': 1}
 
-" Buffline navigation using numbers
+": }}}
+
+": Buffline navigation using numbers {{{
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -96,15 +133,17 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 
-" Spell check
+": }}}
+
+": Spell and Shell checking {{{
 map <leader>s :setlocal spell spellang=en_gb<CR>
 " Shell check
 map <leader>S :!clear && shellcheck %<CR>
 
-"Map UndoTree to F5
-nnoremap <F5> :MundoToggle<CR>
+": }}}
 
-" Nerd Tree
+
+": Nerd Tree {{{
 map <leader>n :NERDTreeToggle<CR>
 
 " Automatically open NerdTree but place the cursor in the main buffer
@@ -120,28 +159,18 @@ let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-"fzf
-nnoremap <C-p> :Files /$HOME/<CR>
+": }}}
 
-"Auto Save text files
+
+
+": Auto Save text files {{{
 let g:auto_save = 0
 augroup ft_text
   au!
   au FileType text let b:auto_save = 1
 augroup END
 
-"Disable the annoying bell
-set belloff=all
+": }}}
 
-"Add a Return line in normal mode without having to switch to Insert
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
 
-"Create a new file, in a new tab
-nmap <C-n> :tabedit file <CR>
 
-"Automaticall Center the buffer
-set scrolloff=999
-
-"Fix delete key in vim
-set backspace=indent,eol,start
