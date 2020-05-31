@@ -16,7 +16,7 @@
 ;
 ;==========================================================
 
-; Background colors defined as variables for later use, some are currently redundent
+; Background colors defined as variables for later use, some are currently redundent {{{
 [colors]
 background = #222
 background-alt = #444
@@ -29,8 +29,9 @@ alert = #bd2c40i
 white = #FFFFFF
 black = #000000
 orange = #FF8C00
+; }}}
 
-; Top menu bar
+; Top menu bar {{{
 [bar/example]
 monitor = ${env:MONITOR:}
 width = 100%
@@ -55,9 +56,9 @@ font-2 = "UbuntuMono Nerd Font:pixelsize=18;1"
 
 modules-left = i3
 modules-right = arrow3 wlan arrow1 pulseaudio arrow2 updates arrow1 date 
+; }}}
 
-################################################################################
-
+; MyBar {{{
 [bar/mybar]
 wm-restack = i3
 override-redirect = true
@@ -67,9 +68,9 @@ scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+; }}}
 
-################################################################################
-
+; Arrow1 {{{
 [module/arrow1]
 ; first left facing arrow, black background with orange text
 type = custom/text
@@ -78,9 +79,9 @@ content-font = 2
 content-foreground = ${colors.black}
 content-background = ${colors.orange}
 content-alignment = bottom
+; }}}
 
-################################################################################
-
+; Arrow2 {{{
 [module/arrow2]
 ; background to trans
 type = custom/text
@@ -88,9 +89,9 @@ content = " "
 content-font = 2
 content-foreground = ${colors.orange}
 content-background = ${colors.black}
+; }}} 
 
-################################################################################
-
+; Arrow3 {{{
 [module/arrow3]
 ; background to trans
 type = custom/text
@@ -98,9 +99,9 @@ content = ""
 content-font = 2 
 content-foreground = ${colors.orange}
 content-background = ${colors.background}
+; }}} 
 
-################################################################################
-
+; Bluethooth - Laptop Only {{{
 [module/bluetooth]
 ; Bluetooth script for connected devices, currently not added to menu bar
 type = custom/script
@@ -109,15 +110,15 @@ tail = true
 click-left = ./polybar-scripts/system-bluetooth-bluetoothctl.sh --toggle &
 format-foreground = ${colors.white}
 format-background = ${colors.black}
+; }}}
 
-################################################################################
-
+; xwindow {{{
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
+; }}}
 
-################################################################################
-
+; i3 Module {{{
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -152,9 +153,9 @@ label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
+; }}}
 
-################################################################################
-
+; xbacklight {{{
 [module/xbacklight]
 type = internal/xbacklight
 
@@ -172,15 +173,16 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
-################################################################################
+; }}}
 
+; Backlight acpi {{{
 [module/backlight-acpi]
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+; }}}
 
-################################################################################
-
+; Wlan Ethernet {{{
 [module/wlan]
 type = internal/network
 interface = enp5s0
@@ -201,9 +203,9 @@ format-disconnected-prefix-background = ${colors.orange}
 format-disconnected-prefix-foreground = ${colors.black}
 format-disconnected-prefix-padding = 1
 label-disconnected = " disconnected "
+; }}}
 
-################################################################################
-
+; Date {{{
 [module/date]
 type = internal/date
 interval = 5
@@ -216,9 +218,9 @@ label = %date% %time%
 label-foreground = ${colors.orange}
 label-background = ${colors.black}
 
+; }}}
 
-################################################################################
-
+; Pulseaudio {{{
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -248,8 +250,9 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-################################################################################
+; }}}
 
+; Arch update script {{{
 [module/updates]
 type = custom/script
 label = Updates: %output%
@@ -258,13 +261,13 @@ label-padding-alignment = left
 
 format-foreground = ${colors.black}
 format-background = ${colors.orange}
+# Root cronjob runs every hour and updates package list
 exec = yay -Pn 
-interval = 10
+interval = 60
 content-font = 2
+; }}}
 
-################################################################################
-
-
+; Settings {{{
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -272,13 +275,12 @@ screenchange-reload = true
 ;compositing-foreground = source
 ;compositing-border = over
 ;pseudo-transparency = false
+; }}}
 
-################################################################################
-
+; wm margins {{{
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+; }}} 
 
-################################################################################
-
-;vim:ft=dosini
+; vim: ft=dosini
