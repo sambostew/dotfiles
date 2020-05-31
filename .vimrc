@@ -1,7 +1,7 @@
 "Set the leader key to space
 let mapleader = "\<space>"
 
-"set clipboard^=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 
 " Change the ESC timeout values
 set timeoutlen=1000 ttimeoutlen=0
@@ -51,6 +51,7 @@ call plug#end()
 
 "Set colour scheme to palenight
 colorscheme palenight
+set background=dark 
 
 " define lightline configuration
 let g:lightline = {
@@ -124,8 +125,8 @@ nnoremap <C-p> :Files /$HOME/<CR>
 "Auto Save text files
 let g:auto_save = 0
 augroup ft_text
-	au!
-	au FileType text let b_auto_save = 1
+  au!
+  au FileType text let b:auto_save = 1
 augroup END
 
 "Disable the annoying bell
@@ -137,3 +138,9 @@ nmap <CR> o<Esc>
 
 "Create a new file, in a new tab
 nmap <C-n> :tabedit file <CR>
+
+"Automaticall Center the buffer
+set scrolloff=999
+
+"Fix delete key in vim
+set backspace=indent,eol,start
