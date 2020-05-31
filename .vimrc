@@ -2,6 +2,7 @@
 let mapleader = "\<space>"
 
 set clipboard^=unnamed,unnamedplus
+set foldmethod=marker
 
 " Change the ESC timeout values
 set timeoutlen=1000 ttimeoutlen=0
