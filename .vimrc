@@ -5,35 +5,21 @@ let mapleader = "\<space>"
 
 set clipboard^=unnamed,unnamedplus
 set foldmethod=marker
-
-" Change the ESC timeout values
 set timeoutlen=1000 ttimeoutlen=0
-
-" Tab Settings"
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-
 syntax on
 filetype plugin indent on
-
-" turn relative line numbers off
 set relativenumber
 highlight LineNr ctermfg=white
+set belloff=all
+set scrolloff=999
+set backspace=indent,eol,start
 
 " turn on line cursor
 set cursorline
 highlight CursorLine gui=underline cterm=underline
-
-
-"Disable the annoying bell
-set belloff=all
-"Automaticall Center the buffer
-"
-set scrolloff=999
-
-"Fix delete key in vim
-set backspace=indent,eol,start
 
 "Add a Return line in normal mode without having to switch to Insert
 nmap <S-Enter> O<Esc>
@@ -47,6 +33,7 @@ nnoremap <F5> :MundoToggle<CR>
 "fzf
 nnoremap <C-p> :Files /$HOME/<CR>
 
+set guioptions-=e
 ": }}}
 
 ": Set split configuration and shortcuts {{{
@@ -84,12 +71,13 @@ call plug#end()
 
 ": Color Scheme {{{
 "Set colour scheme to palenight
-colorscheme palenight
+
 set background=dark 
+colorscheme palenight
 
 ": }}}
 "
-": Lightline Configuration {{{
+": Lightline and Bufferline Configuration {{{
  
 let g:lightline = {
       \ 'colorscheme': 'palenight',
@@ -115,9 +103,21 @@ let g:lightline.separator = {
 
 let g:lightline.component_raw = {'buffers': 1}
 
-": }}}
+let g:lightline#bufferline#number_map = {
+  \ '0': ' 0 ',
+  \ '1': ' 1 ',
+  \ '2': ' 2 ',
+  \ '3': ' 3 ',
+  \ '4': ' 4 ',
+  \ '5': ' 5 ',
+  \ '6': ' 6 ',
+  \ '7': ' 7 ',
+  \ '8': ' 8 ',
+  \ '9': ' 9 ',
+  \ }
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#shorten_path = 0
 
-": Buffline navigation using numbers {{{
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -167,8 +167,5 @@ augroup ft_text
   au!
   au FileType text let b:auto_save = 1
 augroup END
-
 ": }}}
-
-
 
