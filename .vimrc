@@ -26,11 +26,6 @@ set cursorline
 highlight CursorLine gui=underline cterm=underline
 
 
-"Set colour scheme to palenight
-colorscheme palenight
-set background=dark 
-
-
 "Disable the annoying bell
 set belloff=all
 "Automaticall Center the buffer
@@ -46,7 +41,6 @@ nmap <CR> o<Esc>
 
 "Create a new file, in a new tab
 nmap <C-n> :tabedit file <CR>
-
 
 "Map UndoTree to F5
 nnoremap <F5> :MundoToggle<CR>
@@ -88,6 +82,13 @@ call plug#end()
 
 ": }}}
 
+": Color Scheme {{{
+"Set colour scheme to palenight
+colorscheme palenight
+set background=dark 
+
+": }}}
+"
 ": Lightline Configuration {{{
  
 let g:lightline = {
@@ -142,7 +143,6 @@ map <leader>S :!clear && shellcheck %<CR>
 
 ": }}}
 
-
 ": Nerd Tree {{{
 map <leader>n :NERDTreeToggle<CR>
 
@@ -160,8 +160,6 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 ": }}}
-
-
 
 ": Auto Save text files {{{
 let g:auto_save = 0
