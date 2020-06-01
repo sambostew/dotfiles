@@ -108,7 +108,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 #: Color Scheme & Neofetch {{{
 
-neofetch
+neofetch --colors 208 227 208 208 227 
 
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
