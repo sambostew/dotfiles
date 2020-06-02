@@ -147,8 +147,8 @@ map <leader>S :!clear && shellcheck %<CR>
 map <leader>n :NERDTreeToggle<CR>
 
 " Automatically open NerdTree but place the cursor in the main buffer
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+autocmd VimEnter * NERDTree 
+autocmd VimEnter * wincmd p | call lightline#update()
 
 "Automatically close when NerdTree is the last open buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
