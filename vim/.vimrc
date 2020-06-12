@@ -11,7 +11,7 @@ set softtabstop=4
 set tabstop=4
 syntax on
 filetype plugin indent on
-set relativenumber
+set number relativenumber
 highlight LineNr ctermfg=white
 set belloff=all
 set scrolloff=999
@@ -64,7 +64,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug '907th/vim-auto-save'
-
+Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 ": }}}
@@ -161,11 +161,16 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 ": }}}
 
-": Auto Save text files {{{
+": Auto Save text files and i3config detection{{{
 let g:auto_save = 0
 augroup ft_text
   au!
   au FileType text let b:auto_save = 1
 augroup END
+
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end
 ": }}}
 
