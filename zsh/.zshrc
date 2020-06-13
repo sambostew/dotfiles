@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="lsd"
+alias ls="lsd --group-dirs first"
 alias ll="lsd -la"
 
 #Vim Alias
@@ -68,7 +68,7 @@ alias vd="vim $HOME/.config/dunst/dunstrc"
 alias vz="vim $HOME/.zshrc"
 alias vv="vim $HOME/.vimrc"
 alias vh="vim $HOME/Documents/ansible/home-management.yml"
-alias vt="vim $HOME/.config/tmux/tmux.conf"
+alias vt="vim $HOME/.tmux.conf"
 
 #Git Alias
 
@@ -88,6 +88,13 @@ alias st="source $HOME/.tmux.conf"
 alias tn="tmux new -s TMUX"
 alias tl="tmux ls"
 alias ta="tmux attach"
+
+# Use lsd --tree instead of standard tree
+alias tree="lsd --tree"
+
+# Alias both top and htop to bash top
+alias top="bashtop"
+alias htop="bashtop"
 
 #: }}}
 
