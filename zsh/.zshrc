@@ -92,9 +92,8 @@ alias ta="tmux attach"
 # Use lsd --tree instead of standard tree
 alias tree="lsd --tree"
 
-# Alias both top and htop to bash top
-alias top="bashtop"
-alias htop="bashtop"
+# Change color scheme and paging for bat 
+alias bat="bat --theme=ansi-light --pager=never"
 
 #: }}}
 
