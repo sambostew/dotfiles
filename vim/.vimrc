@@ -16,6 +16,7 @@ highlight LineNr ctermfg=white
 set belloff=all
 set scrolloff=999
 set backspace=indent,eol,start
+set modifiable
 
 " turn on line cursor
 set cursorline
