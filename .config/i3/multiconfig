@@ -1,4 +1,4 @@
-# vim: ft=i3: foldmethod=marker
+# foldmethod=marker
 
 #: Initial Settings {{{
 
@@ -7,6 +7,10 @@
 
 # Assign the mod key as ALT
 set $mod Mod1
+
+# Remap Caps Lock to Esc, useful for vim
+xmodmap -e "clear lock" #disable caps lock switch
+xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -274,7 +278,7 @@ bindsym --release XF86AudioPrev exec playerctl previous
 for_window [class="Thunderbird"] move container to workspace $ws1
 for_window [class="Firefox"] move container to workspace $ws2
 for_window [class="Atom"] move container to workspace $ws3
-for_window [class="Vivaldi-stable"] move container to workspace $ws5
+for_window [class="Brave-browser"] move container to workspace $ws5
 for_window [class="VirtualBox Manager"] move container to workspace $ws9
 for_window [class="Joplin"] move container to workspace $ws6
 assign [class="mpv"] $ws6
