@@ -41,7 +41,8 @@ height = 24
 radius = 0.0
 fixed-center = true
 
-background = ${colors.background}
+background = ${colors.black}
+;background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
@@ -98,7 +99,7 @@ type = custom/text
 content = ""
 content-font = 2 
 content-foreground = ${colors.orange}
-content-background = ${colors.background}
+content-background = ${colors.black}
 ; }}} 
 
 ; Bluethooth - Laptop Only {{{
