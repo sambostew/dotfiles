@@ -51,24 +51,34 @@ source $ZSH/oh-my-zsh.sh
 #: }}}
 
 #: Aliases {{{ 
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="lsd --group-dirs first"
-alias ll="lsd -la"
 
-#Vim Alias
+if [[ $OSTYPE == linux* ]]; then
 
-alias vi="vim $HOME/.config/i3/config"
-alias vpi="vim $HOME/.config/picom/picom.conf"
-alias vpo="vim $HOME/.config/polybar/config"
-alias vr="vim $HOME/.config/rofi/config"
-alias vd="vim $HOME/.config/dunst/dunstrc"
+	# Use lsd instead of ls for aesthetics
+	alias ls="lsd --group-dirs first"
+	alias ll="lsd -la"
+
+	#Vim Alias Linux
+
+	alias vi="vim $HOME/.config/i3/config"
+	alias vpi="vim $HOME/.config/picom/picom.conf"
+	alias vpo="vim $HOME/.config/polybar/config"
+	alias vr="vim $HOME/.config/rofi/config"
+	alias vd="vim $HOME/.config/dunst/dunstrc"
+	alias vh="vim $HOME/Documents/ansible/home-management.yml"
+	# Use lsd --tree instead of standard tree
+	alias tree="lsd --tree"
+
+	# Change color scheme and paging for bat 
+	alias bat="bat --theme=ansi-light --pager=never"
+
+fi
+
+# Vim Alias all OS
+
+alias vt="vim $HOME/.tmux.conf"
 alias vz="vim $HOME/.zshrc"
 alias vv="vim $HOME/.vimrc"
-alias vh="vim $HOME/Documents/ansible/home-management.yml"
-alias vt="vim $HOME/.tmux.conf"
 
 #Git Alias
 
@@ -88,12 +98,6 @@ alias st="source $HOME/.tmux.conf"
 alias tn="tmux new -s TMUX"
 alias tl="tmux ls"
 alias ta="tmux attach"
-
-# Use lsd --tree instead of standard tree
-alias tree="lsd --tree"
-
-# Change color scheme and paging for bat 
-alias bat="bat --theme=ansi-light --pager=never"
 
 #: }}}
 
