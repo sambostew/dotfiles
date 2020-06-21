@@ -17,6 +17,9 @@ set belloff=all
 set scrolloff=999
 set backspace=indent,eol,start
 set modifiable
+highlight WildMenu ctermbg=208
+set wildmode=longest:full,full
+set wildmenu
 
 " turn on line cursor
 set cursorline
