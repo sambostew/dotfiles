@@ -227,7 +227,6 @@ bindsym $mod+Shift+t exec thunderbird
 bindsym $mod+Shift+o exec vivaldi-stable
 bindsym $mod+Shift+a exec atom
 bindsym $mod+Shift+v exec virtualbox
-bindsym $mod+Shift+j exec joplin
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
