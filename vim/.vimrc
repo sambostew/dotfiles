@@ -69,6 +69,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug '907th/vim-auto-save'
 Plug 'mboughaba/i3config.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 ": }}}
