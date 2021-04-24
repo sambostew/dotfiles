@@ -57,18 +57,7 @@ font-2 = "UbuntuMono Nerd Font:pixelsize=18;1"
 
 modules-left = i3
 modules-right = arrow3 wlan arrow1 pulseaudio arrow2 updates arrow1 date 
-; }}}
 
-; MyBar {{{
-[bar/mybar]
-wm-restack = i3
-override-redirect = true
-
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
 ; }}}
 
 ; Arrow1 {{{
@@ -263,7 +252,7 @@ label-padding-alignment = left
 format-foreground = ${colors.black}
 format-background = ${colors.orange}
 # Root cronjob runs every hour and updates package list
-exec = yay -Pn 
+exec = paru -Qu | wc -l 2> /dev/null
 interval = 60
 content-font = 2
 ; }}}
