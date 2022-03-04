@@ -133,3 +133,10 @@ source ~/.cache/wal/colors-tty.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #: }}} 
+
+#: Kubernetes {{{
+
+source <(kubectl completion zsh)
+alias k="kubectl"
+
+#: }}}

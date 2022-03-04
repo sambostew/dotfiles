@@ -6,9 +6,9 @@ let mapleader = "\<space>"
 set clipboard^=unnamed,unnamedplus
 set foldmethod=marker
 set timeoutlen=1000 ttimeoutlen=0
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 syntax on
 filetype plugin indent on
 set number relativenumber
