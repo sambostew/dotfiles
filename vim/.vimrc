@@ -70,6 +70,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug '907th/vim-auto-save'
 Plug 'mboughaba/i3config.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 ": }}}
@@ -179,3 +180,10 @@ aug i3config_ft_detection
 aug end
 ": }}}
 
+": YAML {{{
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+":}}}
