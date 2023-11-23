@@ -5,6 +5,9 @@ export LC_ALL="en_GB.UTF-8"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/simon/.oh-my-zsh
+
+# Secrets (not tracked in dotfiles)
+[ -f ~/.secrets ] && source ~/.secrets
 #: }}}
 
 #: Themeing {{{
@@ -56,6 +59,7 @@ if [[ $OSTYPE == linux* ]]; then
 	# Use lsd instead of ls for aesthetics
 	alias ls="lsd --group-dirs first"
 	alias ll="lsd -la"
+	alias menu="./.config/polybar/launch.sh"
 
 	#Vim Alias Linux
 
@@ -138,5 +142,11 @@ source ~/.cache/wal/colors-tty.sh
 
 source <(kubectl completion zsh)
 alias k="kubectl"
+
+#: }}}
+
+#: Zoxide {{{
+
+eval "$(zoxide init zsh)"
 
 #: }}}

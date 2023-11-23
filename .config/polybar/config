@@ -175,7 +175,7 @@ card = intel_backlight
 ; Wlan Ethernet {{{
 [module/wlan]
 type = internal/network
-interface = enp5s0
+interface = enp6s0
 interval = 1.0
 
 format-connected = <label-connected>
