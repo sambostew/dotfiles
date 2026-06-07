@@ -13,9 +13,12 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+# Give i3 time to finish reloading before polybar connects to its IPC socket
+sleep 1
+
 # Launch polybar on each connected monitor
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload example &
+    MONITOR=$m polybar --reload example >>/tmp/polybar-$m.log 2>&1 &
 done
 
 echo "Bars launched..."
