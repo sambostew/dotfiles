@@ -211,7 +211,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-bg-text  
 
 #: exec --no-startup-id killall polybar; polybar -r example
 exec_always --no-startup-id /home/simon/.config/polybar/launch.sh
-exec --no-startup-id conky -c /home/simon/.config/conky/conky.conf
+exec_always --no-startup-id killall -q conky; conky -c /home/simon/.config/conky/conky.conf
 exec_always --no-startup-id killall -q picom; picom -b
 # Goku Terminal Theme
 exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n
