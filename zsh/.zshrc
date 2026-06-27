@@ -2,6 +2,7 @@
 #export UTF8
 export LANG="en_GB.UTF-8"
 export LC_ALL="en_GB.UTF-8"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/simon/.oh-my-zsh
@@ -52,7 +53,10 @@ source $ZSH/oh-my-zsh.sh
 
 #: }}}
 
-#: Aliases {{{ 
+#: Aliases {{{
+
+# Claude Code — run symlink sync before launching
+alias claude='claude-sync-links; command claude'
 
 if [[ $OSTYPE == linux* ]]; then
 
