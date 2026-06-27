@@ -127,11 +127,12 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 neofetch --colors 208 227 208 208 227 
 
-# Pywal terminal recolouring disabled — godmode.jpg's warm palette extracts to
-# #0A0202 as the bg, which tints kitty brown at 0.8 opacity over the wallpaper.
-# (cat ~/.cache/wal/sequences &)
-# cat ~/.cache/wal/sequences
-# source ~/.cache/wal/colors-tty.sh
+# Apply pywal's ANSI palette but strip the warm-tinted background (OSC 11) and
+# color0 (OSC 4;0) escapes — godmode.jpg extracts to #0A0202 for both, which
+# tinted kitty brown at 0.8 opacity. Keeping the other 15 colour remappings so
+# the prompt theme keeps its pywal-derived colours (e.g. "ANSI blue" → yellow).
+sed -E 's/\x1b\]11;[^\x1b]*\x1b\\//g; s/\x1b\]4;0;[^\x1b]*\x1b\\//g' ~/.cache/wal/sequences 2>/dev/null
+source ~/.cache/wal/colors-tty.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #: }}} 
