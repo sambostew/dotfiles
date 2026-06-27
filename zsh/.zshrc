@@ -127,17 +127,11 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 neofetch --colors 208 227 208 208 227 
 
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-
-# Alternative (blocks terminal for 0-3ms)
-#
-cat ~/.cache/wal/sequences
-
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
+# Pywal terminal recolouring disabled — godmode.jpg's warm palette extracts to
+# #0A0202 as the bg, which tints kitty brown at 0.8 opacity over the wallpaper.
+# (cat ~/.cache/wal/sequences &)
+# cat ~/.cache/wal/sequences
+# source ~/.cache/wal/colors-tty.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #: }}} 

@@ -115,17 +115,17 @@ set $ws8 "8: VBox"
 set $ws9 "9: VBox"
 
 # Assign workspace to screens
-workspace $ws1 output HDMI-A-0
+workspace $ws1 output DisplayPort-0
 workspace $ws2 output DisplayPort-1
-workspace $ws3 output DisplayPort-0
+workspace $ws3 output HDMI-A-0
 
-workspace $ws4 output HDMI-A-0
+workspace $ws4 output DisplayPort-0
 workspace $ws5 output DisplayPort-1
-workspace $ws6 output DisplayPort-0
+workspace $ws6 output HDMI-A-0
 
-workspace $ws7 output HDMI-A-0
+workspace $ws7 output DisplayPort-0
 workspace $ws8 output DisplayPort-1
-workspace $ws9 output DisplayPort-0
+workspace $ws9 output HDMI-A-0
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -214,13 +214,13 @@ exec_always --no-startup-id /home/simon/.config/polybar/launch.sh
 exec_always --no-startup-id killall -q conky; conky -c /home/simon/.config/conky/conky.conf
 exec_always --no-startup-id killall -q picom; picom -b
 # Goku Terminal Theme
-exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n
+exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n -s
 # AC Odyssey Wallpaper
 exec_always --no-startup-id sh -c 'for _ in $(seq 1 20); do [ "$(xrandr --listactivemonitors | grep -c "3840/")" -eq 3 ] && break; sleep 0.25; done; feh --bg-scale ~/Pictures/godmode.jpg'
 
 #: }}}
 
-#: xrandr — handled by polybar/launch.sh to avoid race condition on startup {{{
+#: xrandr — handled by ~/dotfiles/randr.sh, invoked from .xinitrc before exec i3 {{{
 
 #: }}}
 
