@@ -116,16 +116,16 @@ set $ws9 "9: VBox"
 
 # Assign workspace to screens
 workspace $ws1 output HDMI-A-0
-workspace $ws2 output DisplayPort-3
-workspace $ws3 output DisplayPort-2
+workspace $ws2 output DisplayPort-1
+workspace $ws3 output DisplayPort-0
 
 workspace $ws4 output HDMI-A-0
-workspace $ws5 output DisplayPort-3
-workspace $ws6 output DisplayPort-2
+workspace $ws5 output DisplayPort-1
+workspace $ws6 output DisplayPort-0
 
 workspace $ws7 output HDMI-A-0
-workspace $ws8 output DisplayPort-3
-workspace $ws9 output DisplayPort-2
+workspace $ws8 output DisplayPort-1
+workspace $ws9 output DisplayPort-0
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -291,8 +291,8 @@ assign [title="spt"] $ws4
 
 #: Gaps {{{
 for_window [class="^.*"] border pixel 0
-gaps inner 15
-gaps outer 15
+gaps inner 22
+gaps outer 22
 
 # Window Swallowing
 exec --no-startup-id python3 /home/simon/.config/i3/i3-swallow.py

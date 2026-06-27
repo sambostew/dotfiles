@@ -35,7 +35,7 @@ orange = #FF8C00
 [bar/example]
 monitor = ${env:MONITOR:}
 width = 100%
-height = 24
+height = 36
 ;offset-x = 1%
 ;offset-y = 0%
 radius = 0.0
@@ -51,9 +51,9 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-font-0 = "UbuntuMono Nerd Font:pixelsize=12;1"
-font-1 = "UbuntuMono Nerd Font:pixelsize=20;4"
-font-2 = "UbuntuMono Nerd Font:pixelsize=18;1"
+font-0 = "UbuntuMono Nerd Font:pixelsize=18;1"
+font-1 = "UbuntuMono Nerd Font:pixelsize=30;4"
+font-2 = "UbuntuMono Nerd Font:pixelsize=27;1"
 
 modules-left = i3
 modules-right = arrow3 wlan arrow1 pulseaudio arrow2 updates arrow1 date 
