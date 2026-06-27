@@ -216,7 +216,7 @@ exec_always --no-startup-id killall -q picom; picom -b
 # Goku Terminal Theme
 exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n
 # AC Odyssey Wallpaper
-exec_always feh --bg-scale ~/Pictures/godmode.jpg
+exec_always --no-startup-id sh -c 'for _ in $(seq 1 20); do [ "$(xrandr --listactivemonitors | grep -c "3840/")" -eq 3 ] && break; sleep 0.25; done; feh --bg-scale ~/Pictures/godmode.jpg'
 
 #: }}}
 
