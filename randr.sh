@@ -1,23 +1,38 @@
 #!/bin/sh
-# Wait for X/kernel to report all 3 outputs as connected. On cold boot, AMD's
-# HDMI 2.1 FRL link training and DP DSC handshake can take several seconds —
-# issuing the modeset before the kernel sees the outputs leaves the layout at
-# 2560x1440 mirrored (Xorg's EDID-less fallback).
+# Applies the 3-monitor 4K layout. Handles the AMDGPU HDMI cold-boot flap:
+# HDMI-A-0 can silently fail its first modeset and stick at its EDID fallback
+# (1440p +0+0). Re-issuing the same xrandr command is a no-op — xrandr sees
+# the mode as already requested. Only a full --off + re-mode forces fresh
+# HDMI link training. Recovery runs in the background so .xinitrc can
+# continue to exec i3 without blocking.
+
+apply_layout() {
+  xrandr --output DisplayPort-0 --mode 3840x2160 --rate 120 --pos 0x0    --rotate normal \
+         --output DisplayPort-1 --primary --mode 3840x2160 --rate 120 --pos 3840x0 --rotate normal \
+         --output HDMI-A-0      --mode 3840x2160 --rate 60  --pos 7680x0 --rotate normal 2>/dev/null
+}
+
+fb_ok() {
+  [ "$(xdpyinfo 2>/dev/null | awk '/dimensions:/ {print $2}')" = "11520x2160" ]
+}
+
 for _ in $(seq 1 40); do
-  c=$(xrandr --query | grep -E "^(HDMI-A-0|DisplayPort-0|DisplayPort-1) connected" | wc -l)
+  c=$(xrandr --query 2>/dev/null | grep -Ec "^(HDMI-A-0|DisplayPort-0|DisplayPort-1) connected")
   [ "$c" -eq 3 ] && break
   sleep 0.25
 done
 
-xrandr --newmode "3840x2160R120" 1097.25 3840 3888 3920 4000 2160 2163 2168 2287 +hsync -vsync 2>/dev/null
-xrandr --addmode DisplayPort-0 "3840x2160R120" 2>/dev/null
+apply_layout
+fb_ok && exit 0
 
-# Retry the modeset itself — the first attempt occasionally fails silently on
-# cold boot (output stays at EDID-default) and we land mirrored at 2K.
-for _ in $(seq 1 5); do
-  xrandr --output DisplayPort-0 --mode 3840x2160R120 --pos 0x0    --rotate normal \
-         --output DisplayPort-1 --primary --mode 3840x2160 --rate 120 --pos 3840x0 --rotate normal \
-         --output HDMI-A-0      --mode 3840x2160 --rate 60  --pos 7680x0 --rotate normal
-  [ "$(xrandr --listactivemonitors | grep -c '3840/')" -eq 3 ] && break
-  sleep 1
-done
+(
+  for _ in $(seq 1 30); do
+    fb_ok && exit 0
+    xrandr --output HDMI-A-0 --off 2>/dev/null
+    sleep 1
+    apply_layout
+    sleep 1
+  done
+) &
+
+exit 0

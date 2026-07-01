@@ -215,14 +215,10 @@ exec_always --no-startup-id killall -q conky; conky -c /home/simon/.config/conky
 exec_always --no-startup-id killall -q picom; picom -b
 # Goku Terminal Theme
 exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n -s
-# AC Odyssey Wallpaper
-exec_always --no-startup-id sh -c 'for _ in $(seq 1 20); do [ "$(xrandr --listactivemonitors | grep -c "3840/")" -eq 3 ] && break; sleep 0.25; done; feh --bg-scale ~/Pictures/godmode.jpg'
-
-# HDMI cold-boot re-apply: AMD HDMI flaps EDID re-reads up to ~30s into the
-# session; randr.sh from .xinitrc lands before the last flap, so HDMI reverts
-# to its EDID-fallback 2560x1440 +0+0 (overlapping DP-0). Re-apply after the
-# flap window and restart conky/feh so they pick up the corrected layout.
-exec --no-startup-id sh -c 'sleep 20; sh ~/dotfiles/randr.sh; killall -q conky; conky -c ~/.config/conky/conky.conf & feh --bg-scale ~/Pictures/godmode.jpg'
+# Wait up to 30s for all 3 monitors to stabilise at 4K (HDMI EDID flaps for
+# up to ~30s on cold boot; .xinitrc runs a parallel re-apply loop over the
+# same window), then set the wallpaper once.
+exec_always --no-startup-id sh -c 'for _ in $(seq 1 120); do [ "$(xrandr --listactivemonitors | grep -c "3840/")" -eq 3 ] && break; sleep 0.25; done; feh --bg-scale ~/Pictures/godmode.jpg'
 
 #: }}}
 
