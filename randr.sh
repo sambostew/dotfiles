@@ -1,10 +1,10 @@
 #!/bin/sh
-# Applies the 3-monitor 4K layout. Handles the AMDGPU HDMI cold-boot flap:
-# HDMI-A-0 can silently fail its first modeset and stick at its EDID fallback
-# (1440p +0+0). Re-issuing the same xrandr command is a no-op — xrandr sees
-# the mode as already requested. Only a full --off + re-mode forces fresh
-# HDMI link training. Recovery runs in the background so .xinitrc can
-# continue to exec i3 without blocking.
+# Apply the 3-monitor 4K layout. Idempotent — safe to call repeatedly.
+# HDMI-A-0 sometimes silently fails its first modeset on cold boot and
+# sticks at its EDID fallback (1440p +0+0); re-issuing xrandr with the
+# same mode is a no-op because xrandr thinks the mode is already set,
+# so we need an explicit --off before re-applying to force fresh link
+# training. Any post-startup flaps are caught by hotplug-watcher.sh.
 
 apply_layout() {
   xrandr --output DisplayPort-0 --mode 3840x2160 --rate 120 --pos 0x0    --rotate normal \
@@ -22,17 +22,12 @@ for _ in $(seq 1 40); do
   sleep 0.25
 done
 
-apply_layout
-fb_ok && exit 0
+for _ in 1 2 3; do
+  apply_layout
+  sleep 1
+  fb_ok && exit 0
+  xrandr --output HDMI-A-0 --off 2>/dev/null
+  sleep 1
+done
 
-(
-  for _ in $(seq 1 30); do
-    fb_ok && exit 0
-    xrandr --output HDMI-A-0 --off 2>/dev/null
-    sleep 1
-    apply_layout
-    sleep 1
-  done
-) &
-
-exit 0
+exit 1

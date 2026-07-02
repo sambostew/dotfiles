@@ -209,16 +209,17 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-bg-text  
 
 #: Exec Always Polybar, Conky, Pywal, Feh and Picon {{{
 
-#: exec --no-startup-id killall polybar; polybar -r example
-exec_always --no-startup-id /home/simon/.config/polybar/launch.sh
-exec_always --no-startup-id killall -q conky; conky -c /home/simon/.config/conky/conky.conf
 exec_always --no-startup-id killall -q picom; picom -b
 # Goku Terminal Theme
 exec_always --no-startup-id wal -i "/home/simon/Pictures/godmode.jpg" -n -s
-# Wait up to 30s for all 3 monitors to stabilise at 4K (HDMI EDID flaps for
-# up to ~30s on cold boot; .xinitrc runs a parallel re-apply loop over the
-# same window), then set the wallpaper once.
-exec_always --no-startup-id sh -c 'for _ in $(seq 1 120); do [ "$(xrandr --listactivemonitors | grep -c "3840/")" -eq 3 ] && break; sleep 0.25; done; feh --bg-scale ~/Pictures/godmode.jpg'
+# Sync layout + relaunch conky/feh/polybar. Runs on i3 start, reload, and
+# restart — so Alt+Shift+R is enough to fix a broken layout post-boot.
+exec_always --no-startup-id sh $HOME/dotfiles/refresh-desktop.sh
+# Watch for RandR changes and re-run refresh-desktop.sh — needed because
+# AMDGPU HDMI can flap for ~30s on cold boot and leave the initial layout
+# broken even after i3 startup. exec (not exec_always) so i3 reload doesn't
+# spawn duplicate watchers.
+exec --no-startup-id sh $HOME/dotfiles/hotplug-watcher.sh
 
 #: }}}
 
