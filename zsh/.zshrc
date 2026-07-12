@@ -125,7 +125,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 
 #: Color Scheme & Neofetch {{{
 
-neofetch --colors 208 227 208 208 227 
+fastfetch
 
 # Apply pywal's ANSI palette but strip the warm-tinted background (OSC 11) and
 # color0 (OSC 4;0) escapes — godmode.jpg extracts to #0A0202 for both, which
