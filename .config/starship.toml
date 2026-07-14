@@ -1,0 +1,78 @@
+# Starship prompt - matches p9k defaults on this machine.
+# Cells (all bg-filled): time(white=grey), context(black), dir(blue=yellow).
+
+format = """
+$time\
+[](fg:white bg:black)\
+$username\
+$hostname\
+[](fg:black bg:blue)\
+$directory\
+${custom.dir_close_arrow}\
+${custom.git_leading_arrow}\
+$git_branch\
+$git_status\
+${custom.git_close_arrow}\
+$cmd_duration$status"""
+
+add_newline = false
+
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[ $time ]($style)"
+style = "bold fg:black bg:white"
+
+[username]
+show_always = true
+format = "[ $user]($style)"
+style_user = "bold fg:bright-yellow bg:black"
+style_root = "bold fg:red bg:black"
+
+[hostname]
+ssh_only = false
+format = "[@$hostname ]($style)"
+style = "bold fg:bright-yellow bg:black"
+
+[directory]
+format = "[ $path ]($style)"
+style = "bold fg:black bg:blue"
+truncation_length = 3
+truncation_symbol = "~/"
+
+[custom.dir_close_arrow]
+when = "! git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+command = ""
+format = "[](fg:blue)"
+
+[custom.git_leading_arrow]
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+command = ""
+format = "[](fg:blue bg:green)"
+
+[git_branch]
+format = "[  $branch ]($style)"
+style = "bold fg:black bg:green"
+
+[git_status]
+format = "([$all_status$ahead_behind ]($style))"
+style = "bold fg:black bg:green"
+staged = "+${count}"
+modified = "~${count}"
+untracked = "?${count}"
+deleted = "-${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+
+[custom.git_close_arrow]
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+command = ""
+format = "[](fg:green)"
+
+[status]
+disabled = true
+
+[cmd_duration]
+format = "[ $duration]($style)"
+style = "bold fg:yellow"
+min_time = 2000

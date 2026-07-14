@@ -18,7 +18,7 @@ set $mod Mod1
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork 
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec ghostty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -233,12 +233,12 @@ bindsym $mod+Shift+x exec i3lock-fancy
 bindsym $mod+Shift+t exec thunderbird 
 bindsym $mod+Shift+v exec virtualbox
 bindsym $mod+Shift+b exec bitwarden
-bindsym $mod+Shift+Return exec kitty -e zsh -ic ranger
+bindsym $mod+Shift+Return exec ghostty -e zsh -ic ranger
 
 ## Custom Keybindings with auto navigate
 
 bindsym $mod+Shift+f exec firefox; workspace $ws2
-bindsym $mod+Shift+m exec kitty -T newsboat -e zsh -ic newsboat; workspace $ws3
+bindsym $mod+Shift+m exec ghostty --title=newsboat -e zsh -ic newsboat; workspace $ws3
 bindsym $mod+Shift+s exec musique; workspace $ws4
 #bindsym $mod+Shift+s exec kitty -T spt -e zsh -ic spt; workspace $ws4
 bindsym $mod+Shift+o exec brave; workspace $ws5
