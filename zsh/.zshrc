@@ -42,11 +42,49 @@ export EDITOR='vim'
 # Claude Code — run symlink sync before launching
 alias claude='claude-sync-links; command claude'
 
+# Wrap pywal so ghostty's background stays black after every recolour.
+# Pywal broadcasts OSC 11 to running terminals; ghostty's config #000000
+# only applies to new windows, so force-reset the bg on all open ptys.
+wal() {
+	command wal "$@"
+	local rc=$?
+	for pts in /dev/pts/[0-9]*; do
+		printf '\033]11;#000000\007' > "$pts" 2>/dev/null
+	done
+	return $rc
+}
+
 if [[ $OSTYPE == linux* ]]; then
 
-	# Use lsd instead of ls for aesthetics
-	alias ls="lsd --group-dirs first"
-	alias ll="lsd -la"
+	# Bare `tmux` (no args, not inside tmux) → drop straight into the sesh `standard`
+	# session (or attach if already running). Use `prefix + s` for the sesh picker,
+	# or pass any args to bypass (e.g. `tmux ls`, `tmux new -s foo`).
+	tmux() {
+		if [[ -z "$TMUX" && $# -eq 0 ]]; then
+			exec command sesh connect standard
+		else
+			command tmux "$@"
+		fi
+	}
+
+	# Ctrl+O — fuzzy-find a file in the obsidian vault via television, open in nvim
+	_tv_vault_widget() {
+		local vault="$HOME/Documents/obsidian"
+		local file
+		file=$(tv files "$vault" </dev/tty)
+		if [[ -n "$file" ]]; then
+			BUFFER="nvim ${(q)file}"
+			zle accept-line
+		else
+			zle reset-prompt
+		fi
+	}
+	zle -N _tv_vault_widget
+	bindkey '^O' _tv_vault_widget
+
+	# Use eza instead of ls (icons + inline git status)
+	alias ls="eza --icons --group-directories-first"
+	alias ll="eza -la --icons --git --group-directories-first"
 	alias menu="./.config/polybar/launch.sh"
 
 	# Vim Alias Linux
@@ -57,8 +95,8 @@ if [[ $OSTYPE == linux* ]]; then
 	alias vd="vim $HOME/.config/dunst/dunstrc"
 	alias vh="vim $HOME/Documents/ansible/home-management.yml"
 
-	# Use lsd --tree instead of standard tree
-	alias tree="lsd --tree"
+	# Use eza --tree instead of standard tree
+	alias tree="eza --tree --icons"
 
 	# Change color scheme and paging for bat
 	alias bat="bat --theme=ansi-light --pager=never"
