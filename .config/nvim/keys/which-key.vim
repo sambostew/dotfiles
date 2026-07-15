@@ -1,62 +1,49 @@
-" Map leader to which_key
-nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+" Map leader
+let g:mapleader = "\<Space>"
 
-" Create map to add keys to
-let g:which_key_map =  {}
-" Define a separator
-let g:which_key_sep = '→'
-" set timeoutlen=100
+lua << EOF
+local wk = require("which-key")
 
-let g:which_key_use_floating_win = 0
+wk.setup({
+    win = {
+        border = "rounded",
+    },
+})
 
-" Change the colors if you want
-highlight default link WhichKey          Operator
-highlight default link WhichKeySeperator DiffAdded
-highlight default link WhichKeyGroup     Identifier
-highlight default link WhichKeyDesc      Function
+wk.add({
+    { "<leader>/", function() require("Comment.api").toggle.linewise.current() end, desc = "Comment" },
+    { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Search files" },
+    { "<leader>h", "<C-W>s", desc = "Split below" },
+    { "<leader>v", "<C-W>v", desc = "Split right" },
+    { "<leader>T", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
+    { "<leader>n", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file tree" },
+    { "<leader>r", function()
+        require("toggleterm.terminal").Terminal:new({ cmd = "yazi", direction = "float", hidden = true }):toggle()
+      end, desc = "Yazi (file manager)" },
 
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+    { "<leader>s", group = "Search" },
+    { "<leader>s/", "<cmd>Telescope search_history<cr>", desc = "Search history" },
+    { "<leader>s;", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Current buffer" },
+    { "<leader>sB", "<cmd>Telescope buffers<cr>", desc = "Open buffers" },
+    { "<leader>sc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
+    { "<leader>sC", "<cmd>Telescope git_bcommits<cr>", desc = "Buffer commits" },
+    { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Files" },
+    { "<leader>sg", "<cmd>Telescope git_files<cr>", desc = "Git files" },
+    { "<leader>sG", "<cmd>Telescope git_status<cr>", desc = "Modified git files" },
+    { "<leader>sh", "<cmd>Telescope oldfiles<cr>", desc = "File history" },
+    { "<leader>sH", "<cmd>Telescope command_history<cr>", desc = "Command history" },
+    { "<leader>sl", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Lines" },
+    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+    { "<leader>sM", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+    { "<leader>sp", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+    { "<leader>sP", "<cmd>Telescope tags<cr>", desc = "Project tags" },
+    { "<leader>sS", "<cmd>Telescope colorscheme<cr>", desc = "Color schemes" },
+    { "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Search text" },
+    { "<leader>sT", "<cmd>Telescope current_buffer_tags<cr>", desc = "Buffer tags" },
+    { "<leader>sw", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>sy", "<cmd>Telescope filetypes<cr>", desc = "File types" },
 
-" Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
-let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
-let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
-      \ }
-
-" Register which key map
-call which_key#register('<Space>', "g:which_key_map")
+    { "<leader>l", ":MarkviewOpenLink<CR>", desc = "Open link" },
+})
+EOF
