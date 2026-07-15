@@ -1,0 +1,13 @@
+blacklist = ["scratch"]
+sort_order = ["config", "tmux", "zoxide"]
+cache = false
+
+[tui]
+prompt = "> "
+placeholder = "Filter sessions... "
+show_icons = true
+
+[[session]]
+name = "standard"
+path = "~"
+startup_command = "~/.config/sesh/standard.sh"
