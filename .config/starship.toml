@@ -73,6 +73,6 @@ format = "[](fg:green)"
 disabled = true
 
 [cmd_duration]
-format = "[ $duration]($style)"
+format = "[ $duration ]($style)"
 style = "bold fg:yellow"
 min_time = 2000
