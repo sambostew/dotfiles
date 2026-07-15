@@ -109,7 +109,7 @@ set $ws2 "2: Firefox"
 set $ws3 "3: Neovim"
 set $ws4 "4: Music"
 set $ws5 "5: Browser"
-set $ws6 "6: Joplin"
+set $ws6 "6: Obsidian"
 set $ws7 "7: VBox"
 set $ws8 "8: VBox"
 set $ws9 "9: VBox"
@@ -233,7 +233,7 @@ bindsym $mod+Shift+x exec i3lock-fancy
 bindsym $mod+Shift+t exec thunderbird 
 bindsym $mod+Shift+v exec virtualbox
 bindsym $mod+Shift+b exec bitwarden
-bindsym $mod+Shift+Return exec ghostty -e zsh -ic ranger
+bindsym $mod+Shift+Return exec ghostty -e yazi
 
 ## Custom Keybindings with auto navigate
 
@@ -242,7 +242,7 @@ bindsym $mod+Shift+m exec ghostty --title=newsboat -e zsh -ic newsboat; workspac
 bindsym $mod+Shift+s exec musique; workspace $ws4
 #bindsym $mod+Shift+s exec kitty -T spt -e zsh -ic spt; workspace $ws4
 bindsym $mod+Shift+o exec brave; workspace $ws5
-bindsym $mod+Shift+n exec joplin-desktop; workspace $ws6
+bindsym $mod+Shift+n exec obsidian; workspace $ws6
 
 #: }}}
 
@@ -283,7 +283,7 @@ for_window [class="Thunderbird"] move container to workspace $ws1
 for_window [class="Firefox"] move container to workspace $ws2
 for_window [class="Brave-browser"] move container to workspace $ws5
 for_window [class="VirtualBox Manager"] move container to workspace $ws9
-for_window [class="Joplin"] move container to workspace $ws6
+for_window [class="obsidian"] move container to workspace $ws6
 
 # Automatically bind terminal applications to certain workspaces
 
