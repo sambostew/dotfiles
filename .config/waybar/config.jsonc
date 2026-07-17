@@ -30,9 +30,11 @@
     },
 
     "custom/updates": {
-        // relies on systemd update.timer (hourly pacman -Sy) keeping the sync DB fresh
-        "exec": "paru -Qu | wc -l",
-        "interval": 3600,
+        // relies on systemd update.timer (hourly pacman -Sy) keeping the sync DB fresh.
+        // Shared cache script: the three bars exec independently and raced the
+        // sync, showing different counts. 300s re-read converges them fast.
+        "exec": "~/.config/waybar/updates.sh",
+        "interval": 300,
         "format": " Updates: {} "
     },
 
@@ -43,8 +45,8 @@
 
     // Powerline arrows (polybar arrow1/2/3). lead: transparent→segment,
     // inv: accent-segment→black-segment, out: black-segment→accent-segment.
-    "custom/arrow-lead": { "format": "", "tooltip": false },
-    "custom/arrow-inv1": { "format": "", "tooltip": false },
-    "custom/arrow-out1": { "format": "", "tooltip": false },
-    "custom/arrow-inv2": { "format": "", "tooltip": false }
+    "custom/arrow-lead": { "format": "", "tooltip": false },
+    "custom/arrow-inv1": { "format": "", "tooltip": false },
+    "custom/arrow-out1": { "format": "", "tooltip": false },
+    "custom/arrow-inv2": { "format": "", "tooltip": false }
 }

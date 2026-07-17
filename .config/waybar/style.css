@@ -27,7 +27,10 @@ window#waybar {
     color: @foreground;
     background: transparent;
 }
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.visible {
+    /* polybar styled label-visible (active ws on unfocused monitor) same
+       as label-focused — without .visible the side bars render grey */
     color: @bar-bg;
     background: @accent;
 }
@@ -47,9 +50,21 @@ window#waybar {
     background: @bar-bg;
 }
 
-/* Arrow glyphs — bigger font like polybar's font-2 */
+/* Arrow glyphs. "Symbols Nerd Font" (NON-mono) renders powerline glyphs
+   full-height; the Mono variants shrink them to the cell → small triangles
+   with gap lines. Size ≈ bar height so the chevron spans it fully. */
 #custom-arrow-lead, #custom-arrow-inv1, #custom-arrow-out1, #custom-arrow-inv2 {
-    font-size: 27px;
+    font-family: "Symbols Nerd Font";
+    /* sized so the triangle spans the 36px bar exactly: at 36px the glyph
+       leaves 1-2px bg strips, at 44px it clips into truncated corners —
+       38px is the measured sweet spot */
+    font-size: 38px;
+    padding: 0;
+    margin: 0;
+    /* the glyph's right side-bearing leaves a 1px strip of this module's
+       bg between triangle base and next segment — overlap it away */
+    margin-right: -1px;
+
 }
 #custom-arrow-lead { color: @accent; background: transparent; }
 #custom-arrow-inv1 { color: @bar-bg;  background: @accent; }
