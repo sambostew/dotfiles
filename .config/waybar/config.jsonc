@@ -1,0 +1,50 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    // no "output" key → one bar per monitor (replaces launch.sh loop)
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": [
+        "custom/arrow-lead", "network",
+        "custom/arrow-inv1", "pulseaudio",
+        "custom/arrow-out1", "custom/updates",
+        "custom/arrow-inv2", "clock"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate"
+    },
+
+    "network": {
+        "interface": "enp6s0",
+        "interval": 1,
+        "format": "  {bandwidthDownBytes}  {bandwidthUpBytes} ",
+        "format-disconnected": " disconnected "
+    },
+
+    "pulseaudio": {
+        "format": " VOL {volume}% ",
+        "format-muted": " 🔇 muted "
+    },
+
+    "custom/updates": {
+        // relies on systemd update.timer (hourly pacman -Sy) keeping the sync DB fresh
+        "exec": "paru -Qu | wc -l",
+        "interval": 3600,
+        "format": " Updates: {} "
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": " {:%Y-%m-%d %H:%M:%S} "
+    },
+
+    // Powerline arrows (polybar arrow1/2/3). lead: transparent→segment,
+    // inv: accent-segment→black-segment, out: black-segment→accent-segment.
+    "custom/arrow-lead": { "format": "", "tooltip": false },
+    "custom/arrow-inv1": { "format": "", "tooltip": false },
+    "custom/arrow-out1": { "format": "", "tooltip": false },
+    "custom/arrow-inv2": { "format": "", "tooltip": false }
+}

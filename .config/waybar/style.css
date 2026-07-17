@@ -1,0 +1,57 @@
+/* Palette inherited from pywal — regenerated on every wal run.
+   Absolute path required (waybar CSS is GTK CSS). */
+@import "/home/simon/.cache/wal/colors-waybar.css";
+
+/* THE one place to change the accent: set to the pywal slot closest to
+   the old polybar orange (#FF8C00) — verify visually, expect color3/color4. */
+@define-color accent @color3;
+/* Bar bg: fixed black by design (same exception as ghostty), NOT pywal bg. */
+@define-color bar-bg #000000;
+
+* {
+    font-family: "UbuntuMono Nerd Font";
+    font-size: 18px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @bar-bg;
+    color: @foreground;
+}
+
+/* Workspaces — focused gets accent bg + dark text, like polybar */
+#workspaces button {
+    padding: 0 8px;
+    color: @foreground;
+    background: transparent;
+}
+#workspaces button.active {
+    color: @bar-bg;
+    background: @accent;
+}
+#workspaces button.urgent {
+    color: @bar-bg;
+    background: @color1;
+}
+
+/* Right-side powerline segments — alternate accent/black like polybar:
+   network (accent bg) → volume (black bg) → updates (accent bg) → clock (black bg) */
+#network, #custom-updates {
+    color: @bar-bg;
+    background: @accent;
+}
+#pulseaudio, #clock {
+    color: @accent;
+    background: @bar-bg;
+}
+
+/* Arrow glyphs — bigger font like polybar's font-2 */
+#custom-arrow-lead, #custom-arrow-inv1, #custom-arrow-out1, #custom-arrow-inv2 {
+    font-size: 27px;
+}
+#custom-arrow-lead { color: @accent; background: transparent; }
+#custom-arrow-inv1 { color: @bar-bg;  background: @accent; }
+#custom-arrow-out1 { color: @accent; background: @bar-bg; }
+#custom-arrow-inv2 { color: @bar-bg;  background: @accent; }
