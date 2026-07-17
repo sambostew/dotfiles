@@ -128,6 +128,9 @@ alias ta="tmux attach"
 
 #: Color Scheme & Fastfetch {{{
 
+# Upload the fastfetch logo image as a kitty-protocol virtual placement; the
+# logo in config.jsonc is a grid of Unicode placeholder cells that display it.
+cat ~/dotfiles/.config/fastfetch/goku-transmit.kitty
 fastfetch
 
 # Apply pywal's ANSI palette but strip the warm-tinted background (OSC 11) and
