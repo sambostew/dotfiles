@@ -1,32 +1,43 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
+    "height": 40,
     // no "output" key → one bar per monitor (replaces launch.sh loop)
 
     "modules-left": ["hyprland/workspaces"],
-    "modules-right": [
-        "custom/arrow-lead", "network",
-        "custom/arrow-inv1", "pulseaudio",
-        "custom/arrow-out1", "custom/updates",
-        "custom/arrow-inv2", "clock"
-    ],
+    "modules-center": ["clock#time"],
+    // privacy is invisible unless mic/screenshare is live — no idle footprint
+    "modules-right": ["privacy", "network", "idle_inhibitor", "custom/updates", "pulseaudio", "clock#date"],
 
     "hyprland/workspaces": {
-        "format": "{name}",
+        // ids only in hyprland now (defaultName dropped) — icon per role here.
+        // 1 mail | 2 firefox | 3 nvim | 4 music | 5 browser | 6 obsidian | 7-9 VMs
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰇮",
+            "2": "󰈹",
+            "3": "󰆍",
+            "4": "󰝚",
+            "5": "󰖟",
+            "6": "󰎞",
+            "7": "󰍹",
+            "8": "󰍹",
+            "9": "󰍹",
+            "default": "󰝦"
+        },
         "on-click": "activate"
     },
 
     "network": {
         "interface": "enp6s0",
         "interval": 1,
-        "format": "  {bandwidthDownBytes}  {bandwidthUpBytes} ",
-        "format-disconnected": " disconnected "
+        "format": "󰇚 {bandwidthDownBytes}   󰕒 {bandwidthUpBytes}",
+        "format-disconnected": "󰲛 disconnected"
     },
 
     "pulseaudio": {
-        "format": " VOL {volume}% ",
-        "format-muted": " 🔇 muted "
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰝟 muted"
     },
 
     "custom/updates": {
@@ -34,19 +45,36 @@
         // Shared cache script: the three bars exec independently and raced the
         // sync, showing different counts. 300s re-read converges them fast.
         "exec": "~/.config/waybar/updates.sh",
+        "return-type": "json",
         "interval": 300,
-        "format": " Updates: {} "
+        "format": "󰏔 {}"
     },
 
-    "clock": {
+    "clock#time": {
         "interval": 1,
-        "format": " {:%Y-%m-%d %H:%M:%S} "
+        "format": "󰥔 {:%H:%M:%S}"
     },
 
-    // Powerline arrows (polybar arrow1/2/3). lead: transparent→segment,
-    // inv: accent-segment→black-segment, out: black-segment→accent-segment.
-    "custom/arrow-lead": { "format": "", "tooltip": false },
-    "custom/arrow-inv1": { "format": "", "tooltip": false },
-    "custom/arrow-out1": { "format": "", "tooltip": false },
-    "custom/arrow-inv2": { "format": "", "tooltip": false }
+    "clock#date": {
+        "interval": 60,
+        "format": "󰃭 {:%Y-%m-%d}"
+    },
+
+    // caffeine toggle — click to hold off the 5-min hypridle lock
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰅶",
+            "deactivated": "󰾪"
+        }
+    },
+
+    "privacy": {
+        "icon-spacing": 8,
+        "icon-size": 16,
+        "modules": [
+            { "type": "screenshare" },
+            { "type": "audio-in" }
+        ]
+    }
 }

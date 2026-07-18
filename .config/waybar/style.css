@@ -5,68 +5,90 @@
 /* THE one place to change the accent: set to the pywal slot closest to
    the old polybar orange (#FF8C00) — verify visually, expect color3/color4. */
 @define-color accent @color3;
-/* Bar bg: fixed black by design (same exception as ghostty), NOT pywal bg. */
-@define-color bar-bg #000000;
+/* Fixed black base (same exception as ghostty/rofi), NOT pywal bg.
+   Near-solid with just a hint of transparency (Simon, 2026-07-18). */
+@define-color bar-bg rgba(0, 0, 0, 0.95);
+@define-color dim @color8;
 
 * {
     font-family: "UbuntuMono Nerd Font";
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     border-radius: 0;
     min-height: 0;
 }
 
+/* Full-width black bar; the modern feel comes from the rounded pill
+   modules inside it (same language as rofi: inset fields + accent). */
 window#waybar {
     background: @bar-bg;
     color: @foreground;
+    border-bottom: 1px solid alpha(@accent, 0.3);
 }
 
-/* Workspaces — focused gets accent bg + dark text, like polybar */
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 6px;
+}
+
+/* Workspaces — icon pills; focused gets accent bg + dark text */
 #workspaces button {
-    padding: 0 8px;
-    color: @foreground;
+    font-size: 19px;
+    padding: 0 11px;
+    margin: 5px 3px;
+    border-radius: 9px;
+    color: @dim;
     background: transparent;
+}
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: @foreground;
+    box-shadow: none;
+    text-shadow: none;
 }
 #workspaces button.active,
 #workspaces button.visible {
     /* polybar styled label-visible (active ws on unfocused monitor) same
        as label-focused — without .visible the side bars render grey */
-    color: @bar-bg;
+    color: #000000;
     background: @accent;
 }
 #workspaces button.urgent {
-    color: @bar-bg;
+    color: #000000;
     background: @color1;
 }
 
-/* Right-side powerline segments — alternate accent/black like polybar:
-   network (accent bg) → volume (black bg) → updates (accent bg) → clock (black bg) */
-#network, #custom-updates {
-    color: @bar-bg;
+/* Right-side modules — subtle inset pills like the rofi inputbar */
+#network,
+#pulseaudio,
+#custom-updates,
+#idle_inhibitor,
+#privacy,
+#clock {
+    padding: 0 14px;
+    margin: 5px 3px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    color: @foreground;
+}
+#clock.time,
+#clock.date {
+    color: @accent;
+}
+#network.disconnected,
+#pulseaudio.muted {
+    color: @color1;
+}
+#idle_inhibitor {
+    color: @dim;
+}
+#idle_inhibitor.activated,
+#custom-updates.pile-up {
+    color: #000000;
     background: @accent;
 }
-#pulseaudio, #clock {
-    color: @accent;
-    background: @bar-bg;
+/* privacy only appears while mic/screenshare is live — make it read as a warning */
+#privacy {
+    color: @color1;
 }
-
-/* Arrow glyphs. "Symbols Nerd Font" (NON-mono) renders powerline glyphs
-   full-height; the Mono variants shrink them to the cell → small triangles
-   with gap lines. Size ≈ bar height so the chevron spans it fully. */
-#custom-arrow-lead, #custom-arrow-inv1, #custom-arrow-out1, #custom-arrow-inv2 {
-    font-family: "Symbols Nerd Font";
-    /* sized so the triangle spans the 36px bar exactly: at 36px the glyph
-       leaves 1-2px bg strips, at 44px it clips into truncated corners —
-       38px is the measured sweet spot */
-    font-size: 38px;
-    padding: 0;
-    margin: 0;
-    /* the glyph's right side-bearing leaves a 1px strip of this module's
-       bg between triangle base and next segment — overlap it away */
-    margin-right: -1px;
-
-}
-#custom-arrow-lead { color: @accent; background: transparent; }
-#custom-arrow-inv1 { color: @bar-bg;  background: @accent; }
-#custom-arrow-out1 { color: @accent; background: @bar-bg; }
-#custom-arrow-inv2 { color: @bar-bg;  background: @accent; }
