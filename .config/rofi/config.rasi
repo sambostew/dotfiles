@@ -1,0 +1,94 @@
+/* Rofi — pywal palette (fixed black, color3 accent) with a modern rounded
+   look. Colours come from ~/.config/wal/templates/colors-rofi-custom.rasi
+   (regenerated on every wal run). */
+
+configuration {
+    modi: "drun,run,window";
+    display-drun: "";
+    display-run: "";
+    display-window: "";
+    drun-display-format: "{name}";
+    font: "UbuntuMono Nerd Font 16";
+    show-icons: true;
+}
+
+@theme "/dev/null"
+@import "~/.cache/wal/colors-rofi-custom.rasi"
+
+* {
+    background-color: transparent;
+    text-color: @wal-fg;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 680px;
+    background-color: rgba(0, 0, 0, 88%);
+    border: 2px;
+    border-color: @wal-accent;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    spacing: 12px;
+}
+
+inputbar {
+    children: [icon-search, entry];
+    background-color: rgba(255, 255, 255, 6%);
+    border-radius: 10px;
+    padding: 12px 16px;
+    spacing: 12px;
+}
+
+icon-search {
+    expand: false;
+    filename: "search-symbolic";
+    size: 22px;
+}
+
+entry {
+    text-color: @wal-accent;
+    placeholder: "Search";
+    placeholder-color: @wal-dim;
+    vertical-align: 0.5;
+}
+
+listview {
+    lines: 8;
+    scrollbar: false;
+    spacing: 2px;
+}
+
+element {
+    padding: 9px 14px;
+    spacing: 12px;
+    border-radius: 10px;
+}
+
+element normal.normal, element alternate.normal {
+    text-color: @wal-dim;
+}
+
+element selected.normal {
+    background-color: @wal-accent;
+    text-color: @wal-bg;
+}
+
+element urgent {
+    text-color: @wal-urgent;
+}
+
+element-icon {
+    size: 28px;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
+}
