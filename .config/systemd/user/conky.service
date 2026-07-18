@@ -1,0 +1,11 @@
+# conky exits cleanly on SIGTERM while the compositor is alive, but once the
+# wayland socket dies it blocks on the dead fd and ignored TERM for the full
+# 90s session-scope timeout on every shutdown (journal 2026-07-18). Running
+# it in its own unit bounds the wait: TERM, then SIGKILL after 2s.
+[Unit]
+Description=Conky system panel (pinned to HDMI-A-1 by launch.sh)
+
+[Service]
+Type=forking
+ExecStart=%h/.config/conky/launch.sh
+TimeoutStopSec=2
