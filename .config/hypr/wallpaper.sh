@@ -7,3 +7,6 @@ awww img "$HOME/Pictures/godmode.jpg" --transition-type fade
 # Reload waybar CSS so it picks up the fresh pywal palette (no-op if
 # waybar isn't running yet — Phase B / future wallpaper rotation).
 pgrep -x waybar >/dev/null && pkill -SIGUSR2 waybar
+
+# Dunst reads its colours from a dunstrc.d drop-in rendered by wal above.
+pgrep -x dunst >/dev/null && dunstctl reload
