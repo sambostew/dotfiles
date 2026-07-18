@@ -1,0 +1,18 @@
+# Shadows the packaged unit (/usr/lib/systemd/user/waybar.service): that one
+# has Requisite=graphical-session.target, which never activates under plain
+# Hyprland (no uwsm), and dependency lists can't be cleared from a drop-in.
+#
+# Supervised because waybar 0.15.0 segfaults at login — privacy module
+# use-after-free (privacy.cpp:198, set_visible on a destroyed widget) when
+# PipeWire nodes churn during session start. Restart=on-failure brings it
+# straight back; pkill/systemctl stop (SIGTERM) still stops it cleanly.
+[Unit]
+Description=Waybar (supervised, session-managed by Hyprland exec-once)
+StartLimitIntervalSec=30
+StartLimitBurst=10
+
+[Service]
+ExecStart=/usr/bin/waybar
+ExecReload=kill -SIGUSR2 $MAINPID
+Restart=on-failure
+RestartSec=1
