@@ -1,0 +1,10 @@
+/* pywal → GTK named-colour overrides (rendered to ~/.cache/wal/colors-gtk.css).
+   Accents/selection follow the wallpaper palette; adw-gtk3-dark keeps its
+   dark neutrals (matches the fixed-black bar/terminal exception). */
+@define-color theme_selected_bg_color {color3};
+@define-color theme_selected_fg_color {background};
+@define-color selected_bg_color {color3};
+@define-color selected_fg_color {background};
+@define-color accent_color {color3};
+@define-color accent_bg_color {color3};
+@define-color accent_fg_color {background};

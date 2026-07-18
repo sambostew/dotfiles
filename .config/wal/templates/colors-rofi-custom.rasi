@@ -1,0 +1,9 @@
+/* pywal → rofi colour variables (rendered to ~/.cache/wal/colors-rofi-custom.rasi).
+   Same contract as colors-waybar.css: accent = color3, bar-style fixed black bg. */
+* {{
+    wal-bg:     #000000;
+    wal-fg:     {foreground};
+    wal-accent: {color3};
+    wal-dim:    {color8};
+    wal-urgent: {color1};
+}}
