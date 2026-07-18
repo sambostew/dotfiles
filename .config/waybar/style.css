@@ -6,8 +6,8 @@
    the old polybar orange (#FF8C00) — verify visually, expect color3/color4. */
 @define-color accent @color3;
 /* Fixed black base (same exception as ghostty/rofi), NOT pywal bg.
-   Near-solid with just a hint of transparency (Simon, 2026-07-18). */
-@define-color bar-bg rgba(0, 0, 0, 0.95);
+   0.80 alpha — matched to the dunst notification bg (Simon, 2026-07-18). */
+@define-color bar-bg rgba(0, 0, 0, 0.80);
 @define-color dim @color8;
 
 * {
