@@ -63,6 +63,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #custom-updates,
+#custom-notification,
 #idle_inhibitor,
 #privacy,
 #clock {
@@ -87,6 +88,13 @@ window#waybar {
 #custom-updates.pile-up {
     color: #000000;
     background: @accent;
+}
+/* unread notifications waiting in the swaync panel */
+#custom-notification.notification,
+#custom-notification.dnd-notification,
+#custom-notification.inhibited-notification,
+#custom-notification.dnd-inhibited-notification {
+    color: @accent;
 }
 /* privacy only appears while mic/screenshare is live — make it read as a warning */
 #privacy {

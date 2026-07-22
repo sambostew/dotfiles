@@ -1,0 +1,14 @@
+/* Base theme from the package, pywal colours layered on top. colors-swaync.css
+   is a symlink to the wal-rendered ~/.cache/wal file (same pattern as
+   dunst/dunstrc.d/99-wal.conf) so a `wal` rerun re-tints without touching
+   this file. */
+@import url("/etc/xdg/swaync/style.css");
+@import url("colors-swaync.css");
+
+.notification-row .notification-background .notification.critical {
+  border-color: var(--critical-color);
+}
+
+.control-center {
+  border: 1px solid var(--noti-border-color);
+}

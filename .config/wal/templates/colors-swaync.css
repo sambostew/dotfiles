@@ -1,0 +1,19 @@
+/* pywal → swaync colours (rendered to ~/.cache/wal/colors-swaync.css, read via
+   ~/.config/swaync/colors-swaync.css symlink). Same contract as
+   colors-dunst.conf/colors-waybar: accent = color3, bg fixed near-solid
+   black. Overrides the :root variables from /etc/xdg/swaync/style.css. */
+:root {{
+  --cc-bg: rgba(0, 0, 0, 0.8);
+  --noti-border-color: #{color3.strip}80;
+  --noti-bg: 0, 0, 0;
+  --noti-bg-alpha: 0.8;
+  --noti-bg-darker: rgb(0, 0, 0);
+  --noti-bg-hover: rgba(255, 255, 255, 0.06);
+  --noti-bg-focus: rgba(255, 255, 255, 0.1);
+  --noti-close-bg: #{color8.strip}66;
+  --noti-close-bg-hover: #{color8.strip}99;
+  --text-color: {foreground};
+  --text-color-disabled: {color8};
+  --bg-selected: {color3};
+  --critical-color: {color1};
+}}

@@ -7,7 +7,7 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock#time"],
     // privacy is invisible unless mic/screenshare is live — no idle footprint
-    "modules-right": ["privacy", "network", "idle_inhibitor", "custom/updates", "pulseaudio", "clock#date"],
+    "modules-right": ["privacy", "network", "idle_inhibitor", "custom/notification", "custom/updates", "pulseaudio", "clock#date"],
 
     "hyprland/workspaces": {
         // ids only in hyprland now (defaultName dropped) — icon per role here.
@@ -76,5 +76,36 @@
             { "type": "screenshare" },
             { "type": "audio-in" }
         ]
+    },
+
+    "custom/notification": {
+        // swaync-client -swb streams JSON on every notification add/close —
+        // no interval/exec polling needed, waybar just reads the stream.
+        "tooltip": true,
+        "format": "{icon}",
+        // colour comes from style.css (@accent, re-tints with wal) — no
+        // inline markup here, glyph only. Bell / bell-slash (DND) + a small
+        // circle badge superscript when there's something unread
+        "format-icons": {
+            "notification": "<sup></sup>",
+            "none": "",
+            "dnd-notification": "<sup></sup>",
+            "dnd-none": "",
+            "inhibited-notification": "<sup></sup>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<sup></sup>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        // swaync-client -swb connects straight to swaync; if swaync ever
+        // restarts or crashes that connection dies and waybar won't relaunch
+        // it on its own, freezing the icon on stale state forever. Cap the
+        // wait so it self-heals.
+        "restart-interval": 5,
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }
