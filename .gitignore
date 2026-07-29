@@ -1,2 +1,3 @@
 .config/nvim.bak-arch/
+.config/nvim/undo-dir/
 .config/hypr/hdr-toggle.sh
