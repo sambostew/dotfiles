@@ -14,7 +14,7 @@ d=$(dirname "$(realpath "$0")")
 t=/usr/share/sddm/themes/sugar-candy
 cp "$d/sugar-candy/Main.qml" "$t/Main.qml"
 cp "$d/sugar-candy/theme.conf" "$t/theme.conf"
-cp "$d/sugar-candy/gokulight.jpg" "$t/gokulight.jpg"
+cp "$d/sugar-candy/gokulight.jpg" "$t/Backgrounds/gokulight.jpg"
 mkdir -p /etc/sddm.conf.d
 cp "$d/sddm.conf.d-theme.conf" /etc/sddm.conf.d/theme.conf
 echo "installed — takes effect at next SDDM start"
